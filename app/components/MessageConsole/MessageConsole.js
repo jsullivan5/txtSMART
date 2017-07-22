@@ -32,7 +32,7 @@ class MessageConsole extends Component {
     const messages = this.displayMessages(messageList);
 
     return (
-      <div>
+      <div className='message-console'>
         {messages}
       </div>
     )

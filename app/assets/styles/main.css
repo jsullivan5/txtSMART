@@ -15,3 +15,32 @@ body {
 #main {
   text-align: center;
 }
+
+.message-console {
+  width: 600px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.message-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.send {
+  background-color: blue;
+  color: white;
+  width: 250px;
+  align-self: flex-end;
+  padding: 15px;
+  border-radius: 10%;
+}
+
+.receive {
+  background-color: lightgray;
+  width: 250px;
+  align-self: flex-start;
+  padding: 15px;
+  border-radius: 10%;
+}
