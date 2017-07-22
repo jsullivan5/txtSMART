@@ -3,14 +3,29 @@ import { render } from 'react-dom';
 import MessageConsole from './components/MessageConsole/MessageConsole'
 
 class Root extends Component {
+  constructor() {
+    super()
+    this.state = {
+      messageList: [],
+    }
+  }
+
   componentDidMount() {
-    // INSERT API CALL TO YOUR INTERNAL API
+    fetch('./api/history')
+      .then(response => response.json())
+      .then(responseData => {
+        console.log(responseData);
+        this.setState({messageList: responseData})
+      })
+      .catch(err => console.log(err))
   }
 
   render() {
+    const { messageList } = this.state;
+
     return (
       <main>
-        <MessageConsole />
+        <MessageConsole messageList={messageList}/>
       </main>
     )
   }
