@@ -15,7 +15,6 @@ function test(req, res, next) {
 }
 
 function sendSms(req, res) {
-  console.log('send firing');
   var client = require('twilio')(credentials.sidLive, credentials.liveToken);
   client.api.messages
     .create({
@@ -24,11 +23,21 @@ function sendSms(req, res) {
       from: '+18178732313',
     }).then(function(data) {
       console.log('Administrator notified');
-      return data
+
+      res.status(200).send({
+        body: data.body,
+        to: data.to,
+        from: data.from
+      })
     }).catch(function(err) {
       console.error('Could not notify administrator');
       console.error(err);
     });
+    // res.status(200).send({
+    //   body: MessageInstance.body,
+    //   to: MessageInstance.to,
+    //   from: MessageInstance.from
+    // })
 }
 
 function getHistory(req, res) {
