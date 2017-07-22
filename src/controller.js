@@ -15,6 +15,7 @@ function test(req, res, next) {
 }
 
 function sendSms(req, res) {
+  console.log('send firing');
   var client = require('twilio')(credentials.sidLive, credentials.liveToken);
   client.api.messages
     .create({
@@ -31,6 +32,7 @@ function sendSms(req, res) {
 }
 
 function getHistory(req, res) {
+  console.log('get history firing');
   var client = require('twilio')(credentials.sidLive, credentials.liveToken);
 
   client.messages.list().then((data) => {
