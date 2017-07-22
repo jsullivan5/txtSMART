@@ -8,6 +8,8 @@ class Root extends Component {
     this.state = {
       messageList: [],
     }
+
+    this.handleToneClick = this.handleToneClick.bind(this);
   }
 
   componentDidMount() {
@@ -20,12 +22,17 @@ class Root extends Component {
       .catch(err => console.log(err))
   }
 
+  handleToneClick() {
+    console.log('working')
+  }
+
   render() {
     const { messageList } = this.state;
 
     return (
       <main>
-        <MessageConsole messageList={messageList}/>
+        <MessageConsole messageList={messageList}
+                        handleToneClick={this.handleToneClick} />
       </main>
     )
   }
