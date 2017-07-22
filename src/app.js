@@ -67,20 +67,3 @@ app.listen(port);
 
 
 console.log(`Listening at http://localhost:${port}`);
-
-
-//might use later.  Another response method...
-
-// app.post('/sms', function(req, res) {
-//   console.log(req.body);
-//   var msgFrom = req.body.Form;
-//   var msgBody = req.body.Body;
-//
-//   res.send(`
-//     <Response>
-//       <Message>
-//         Hello ${msgFrom}.  You Said ${msgBody}
-//       </Message>
-//     </Response>
-//   `)
-// });
