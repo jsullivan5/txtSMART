@@ -34,17 +34,6 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
-// app.post('/sms', function(req, res) {
-//
-//   var message = 'Hello, thanks for the new message.';
-//
-//   var twiml = new twilio.TwimlResponse();
-//   twiml.message(message);
-//   res.writeHead(200, {'Content-Type': 'text/xml'});
-//   res.end(twiml.toString());
-// });
-
-
 app.post("/sms", function (request, response) {
   console.log('/sms firing');
   console.log(request.body.Body);
