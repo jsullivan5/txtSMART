@@ -15,10 +15,12 @@ function test(req, res, next) {
 }
 
 function sendSms(req, res) {
+  var messageContent = req.params.content
   var client = require('twilio')(credentials.sidLive, credentials.liveToken);
+
   client.api.messages
     .create({
-      body: 'hello from node, the machines have become sentient',
+      body: messageContent,
       to: '+12146210523',
       from: '+18178732313',
     }).then(function(data) {
@@ -29,19 +31,14 @@ function sendSms(req, res) {
         to: data.to,
         from: data.from
       })
+      
     }).catch(function(err) {
       console.error('Could not notify administrator');
       console.error(err);
     });
-    // res.status(200).send({
-    //   body: MessageInstance.body,
-    //   to: MessageInstance.to,
-    //   from: MessageInstance.from
-    // })
 }
 
 function getHistory(req, res) {
-  console.log('get history firing');
   var client = require('twilio')(credentials.sidLive, credentials.liveToken);
 
   client.messages.list().then((data) => {

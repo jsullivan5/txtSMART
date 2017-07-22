@@ -35,14 +35,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // app.post('/sms', function(req, res) {
-//   var smsCount = req.session.counter || 0;
 //
 //   var message = 'Hello, thanks for the new message.';
-//   if(smsCount > 0) {
-//     message = 'Hello, thanks for message number ' + (smsCount + 1);
-//   }
-//
-//   req.session.counter = smsCount + 1;
 //
 //   var twiml = new twilio.TwimlResponse();
 //   twiml.message(message);
@@ -52,8 +46,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 app.post("/sms", function (request, response) {
+  console.log('/sms firing');
+  console.log(request.body.Body);
   console.log(request.body);
-  response.send(`<Response>
+  response.status(200).send(`<Response>
                   <Message>
                     This is an automated response: Suh Dude!
                   </Message>

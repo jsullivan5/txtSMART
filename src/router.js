@@ -9,7 +9,7 @@ var credentials = require('../credentials.js');
 
 router.post('/tone', controller.getTone)
 router.get('/test', controller.test)
-router.get('/send', controller.sendSms)
+router.get('/send/:content', controller.sendSms)
 router.get('/history', controller.getHistory)
 
 module.exports = router;
