@@ -21,6 +21,7 @@ class SendController extends Component {
     const { sendText } = this.state
 
     fetch(`/api/send/${sendText}`)
+    this.setState({sendText: ''})
   }
 
   render() {
@@ -28,7 +29,7 @@ class SendController extends Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Send Txt:
-          <textarea value={this.state.value} onChange={this.handleChange} />
+          <textarea value={this.state.sendText} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
