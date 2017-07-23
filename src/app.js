@@ -38,11 +38,7 @@ app.post("/sms", function (request, response) {
   console.log('/sms firing');
   console.log(request.body.Body);
   console.log(request.body);
-  response.status(200).send(`<Response>
-                  <Message>
-                    This is an automated response: Suh Dude!
-                  </Message>
-                </Response>`)
+  response.status(200).send(`<Response></Response>`)
 });
 
 app.use('/assets', express.static(path.join(__dirname, '../app/assets')));
