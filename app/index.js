@@ -31,21 +31,11 @@ class Root extends Component {
     })
       .then(response => response.json())
       .then(responseData => {
-        // console.log(responseData.document_tone.tone_categories[0].tones);
         const tones = responseData.document_tone.tone_categories[0].tones
-        // console.log(messageData.id);
-        // console.log(messageData);
         const newData = Object.assign({}, messageData, {tone: tones}, {toneView: true})
-        // console.log('newData', newData);
         const msgArray = Array.from(this.state.messageList);
-        console.log('messageArray',msgArray);
         msgArray[messageData.id] = newData;
         this.setState({ messageList: msgArray})
-        // const newMsgArray = update(msgArray, { messageData.id: {$set: newData}})
-        // console.console.log(newMsgArray);;
-        // this.setState({messageList: newMsgArray})
-
-
       })
   }
 
