@@ -26,6 +26,14 @@ class Root extends Component {
   handleToneClick(messageData) {
     const messageBody = messageData.body
 
+    if (messageData.toneView === true) {
+      const newData = Object.assign({}, messageData, {toneView: false});
+      const msgArray = Array.from(this.state.messageList);
+      msgArray[messageData.id] = newData;
+      this.setState({ messageList: msgArray})
+      return 
+    }
+
     fetch(`/api/tone/${messageBody}`, {
       method: 'POST'
     })
