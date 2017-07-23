@@ -31,7 +31,8 @@ class Root extends Component {
     if (messageData.toneView === true) {
       const newData = Object.assign({}, messageData, {toneView: false});
       const msgArray = Array.from(this.state.messageList);
-      msgArray[messageData.id] = newData;
+      const newIndex = msgArray.indexOf(messageData)
+      msgArray[newIndex] = newData;
       this.setState({ messageList: msgArray})
       return
     }
