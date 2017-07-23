@@ -2,6 +2,8 @@ var credentials = require('../credentials.js');
 var credentials = require('../credentials.js');
 
 function getTone(req, res) {
+  var requestBody = req.params.content;
+  console.log(requestBody);
   var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
   var tone_analyzer = new ToneAnalyzerV3({
@@ -11,7 +13,7 @@ function getTone(req, res) {
   });
 
   var params = {
-    text: 'You son of a bitch!',
+    text: requestBody,
     tones: 'emotion'
   };
 

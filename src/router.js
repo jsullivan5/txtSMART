@@ -5,7 +5,7 @@ var Watson = require('./controllerWatson')
 var http = require('http');
 
 
-router.post('/tone', Watson.getTone)
+router.post('/tone/:content', Watson.getTone)
 router.get('/send/:content', controller.sendSms)
 router.get('/history', controller.getHistory)
 

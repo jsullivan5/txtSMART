@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Message } from '../Message/Message';
-import 'whatwg-fetch'
+
 
 const MessageConsole = ({ messageList, handleToneClick }) => {
 
