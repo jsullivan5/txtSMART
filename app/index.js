@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import update from 'react-addons-update';
-import MessageConsole from './components/MessageConsole/MessageConsole'
-import 'whatwg-fetch'
+import MessageConsole from './components/MessageConsole/MessageConsole';
+import SendController from './components/SendController/SendController';
+import 'whatwg-fetch';
 
 class Root extends Component {
   constructor() {
@@ -31,7 +32,7 @@ class Root extends Component {
       const msgArray = Array.from(this.state.messageList);
       msgArray[messageData.id] = newData;
       this.setState({ messageList: msgArray})
-      return 
+      return
     }
 
     fetch(`/api/tone/${messageBody}`, {
@@ -52,8 +53,10 @@ class Root extends Component {
 
     return (
       <main>
+        <SendController className='send-controller'/>
         <MessageConsole messageList={messageList}
                         handleToneClick={this.handleToneClick} />
+
       </main>
     )
   }

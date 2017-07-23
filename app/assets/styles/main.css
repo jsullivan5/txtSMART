@@ -14,7 +14,11 @@ body {
 
 #main {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
+
+/*Message Console Styles*/
 
 .message-console {
   width: 600px;
@@ -43,4 +47,22 @@ body {
   align-self: flex-start;
   padding: 15px;
   border-radius: 10%;
+}
+
+/* Send Controller Styles */
+
+.send-controller {
+  display: inline-block;
+  width: 200px;
+
+}
+
+form {
+  display: inline-block;
+  float: right;
+}
+
+textarea {
+  width: 300px;
+  height: 200px;
 }
