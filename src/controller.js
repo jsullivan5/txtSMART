@@ -18,7 +18,9 @@ function sendSms(req, res) {
       res.status(200).send({
         body: data.body,
         to: data.to,
-        from: data.from
+        from: data.from,
+        tone: '',
+        toneView: false
       })
 
     }).catch(function(err) {
@@ -31,9 +33,9 @@ function getHistory(req, res) {
   var client = require('twilio')(credentials.sidLive, credentials.liveToken);
 
   client.messages.list().then((data) => {
-    var messages =  data.map(function(message, index) {
+    var messages =  data.map(function(message, index, array) {
       return {
-        id: index,
+        id: array.length - index,
         body: message.body,
         to: message.to,
         from: message.from,

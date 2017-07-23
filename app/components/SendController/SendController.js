@@ -21,10 +21,17 @@ class SendController extends Component {
     const { sendText } = this.state
 
     fetch(`/api/send/${sendText}`)
-    this.setState({sendText: ''})
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        this.props.handleSend(data)
+      })
+
+    this.setState({ sendText: '' })
   }
 
   render() {
+    console.log(this.props.handleSend);
     return (
       <form onSubmit={this.handleSubmit}>
         <label>

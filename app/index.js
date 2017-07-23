@@ -13,6 +13,7 @@ class Root extends Component {
     }
 
     this.handleToneClick = this.handleToneClick.bind(this);
+    this.handleSend = this.handleSend.bind(this);
   }
 
   componentDidMount() {
@@ -43,9 +44,18 @@ class Root extends Component {
         const tones = responseData.document_tone.tone_categories[0].tones
         const newData = Object.assign({}, messageData, {tone: tones}, {toneView: true})
         const msgArray = Array.from(this.state.messageList);
-        msgArray[messageData.id] = newData;
+        const newIndex = msgArray.indexOf(messageData)
+        msgArray[newIndex] = newData;
         this.setState({ messageList: msgArray})
       })
+  }
+
+  handleSend(message) {
+    const currentState = this.state.messageList;
+    const newMsgObj = Object.assign({}, message, { id: currentState.length + 1 })
+    const newState = Array.from(currentState)
+    newState.unshift(newMsgObj)
+    this.setState({messageList: newState})
   }
 
   render() {
@@ -53,7 +63,8 @@ class Root extends Component {
 
     return (
       <main>
-        <SendController className='send-controller'/>
+        <SendController className='send-controller'
+                        handleSend={this.handleSend}/>
         <MessageConsole messageList={messageList}
                         handleToneClick={this.handleToneClick} />
 
