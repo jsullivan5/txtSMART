@@ -8,6 +8,8 @@ var app = express();
 var router = require('./router');
 var session = require('express-session');
 var twilio = require('twilio');
+var http = require('http');
+
 
 
 
@@ -27,6 +29,22 @@ if (process.env.NODE_ENV !== 'production') {
   var config = require('../webpack.config.js');
   var compiler = webpack(config);
 
+
+  var server = http.createServer(app)
+                   .listen(port, () => {
+                      console.log(`Listening on port ${port}.`);
+                    });
+
+  var io = require('socket.io')(server);
+
+
+  io.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+      console.log(data);
+    });
+  });
+
   app.use(webpackHotMiddleware(compiler));
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
@@ -34,10 +52,23 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
+var newMessage;
+
 app.post("/sms", function (request, response) {
   console.log('/sms firing');
   console.log(request.body.Body);
   console.log(request.body);
+  io.sockets.emit('message', request.body);
+  // io.on('connection', function (socket) {
+  //   socket.emit('message', { message: request.body });
+  //   socket.on('my other event', function (data) {
+  //     console.log(data);
+  //   });
+  // });
+
+  // newMessage = request.body
+
+  //do stuff
   response.status(200).send(`<Response></Response>`)
 });
 
@@ -48,7 +79,16 @@ app.get('/', function (req, res) { res.sendFile(path.join(__dirname, '/../index.
 app.use('/api', router);
 app.get('/*', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
 
-app.listen(port);
+// app.listen(port);
+
+//Setting up web socket
+
+
+// io.on('connection', (socket) => {
+//   console.log('A user has connected.');
+// });
 
 
 console.log(`Listening at http://localhost:${port}`);
+
+module.exports = server;
