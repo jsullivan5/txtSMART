@@ -15,6 +15,13 @@ describe('Message component', () => {
     expect(wrapper.find('.message-wrapper').length).toBe(1)
   })
 
+  it('should display the message', () => {
+    const wrapper = shallow(<Message messageData={mockDataSend}
+      handleToneClick={mockClickFunc}/>)
+
+    expect(wrapper.contains(<p>hello</p>)).toBe(true)
+  })
+
   it('should give a className based on what number sent the message', () => {
     const wrapper = shallow(<Message messageData={mockDataSend}
       handleToneClick={mockClickFunc}/>)
@@ -33,11 +40,11 @@ describe('Message component', () => {
     const wrapper = shallow(<Message messageData={mockDataSend}
       handleToneClick={mockClickFunc}/>)
 
+    expect(wrapper.contains(<p>happy: 5</p>)).toBe(false)
+
     const wrapper2 = shallow(<Message messageData={mockDataToneView}
       handleToneClick={mockClickFunc}/>)
-
-
-    expect(wrapper.contains(<p>happy: 5</p>)).toBe(false)
+  
     expect(wrapper2.contains(<p>happy: 5</p>)).toBe(true)
   })
 
