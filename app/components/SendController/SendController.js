@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import 'whatwg-fetch';
 
 class SendController extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       sendText: ''
     };
@@ -13,7 +13,7 @@ class SendController extends Component {
   }
 
   handleChange(event) {
-    this.setState({sendText: event.target.value});
+    this.setState({ sendText: event.target.value });
   }
 
   handleSubmit(event) {
@@ -23,7 +23,6 @@ class SendController extends Component {
     fetch(`/api/send/${sendText}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.props.handleSend(data)
       })
 
@@ -31,7 +30,6 @@ class SendController extends Component {
   }
 
   render() {
-    console.log(this.props.handleSend);
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
