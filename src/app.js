@@ -8,6 +8,8 @@ var app = express();
 var router = require('./router');
 var session = require('express-session');
 var twilio = require('twilio');
+var http = require('http');
+
 
 
 
@@ -27,6 +29,7 @@ if (process.env.NODE_ENV !== 'production') {
   var config = require('../webpack.config.js');
   var compiler = webpack(config);
 
+
   app.use(webpackHotMiddleware(compiler));
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
@@ -34,10 +37,20 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
+
+//WebSockets for Incoming Text
+var server = http.createServer(app)
+                 .listen(port, () => {
+                    console.log(`Listening on port ${port}.`);
+                  });
+
+var io = require('socket.io')(server);
+
+
 app.post("/sms", function (request, response) {
-  console.log('/sms firing');
-  console.log(request.body.Body);
-  console.log(request.body);
+  console.log(request);
+  io.sockets.emit('message', request.body);
+
   response.status(200).send(`<Response></Response>`)
 });
 
@@ -48,7 +61,7 @@ app.get('/', function (req, res) { res.sendFile(path.join(__dirname, '/../index.
 app.use('/api', router);
 app.get('/*', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
 
-app.listen(port);
-
 
 console.log(`Listening at http://localhost:${port}`);
+
+module.exports = server;

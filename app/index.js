@@ -4,13 +4,23 @@ import update from 'react-addons-update';
 import MessageConsole from './components/MessageConsole/MessageConsole';
 import SendController from './components/SendController/SendController';
 import 'whatwg-fetch';
+import socket from './assets/sockets.js';
+import newMessage from './AppHelpers/NewMessage.js'
+
 
 class Root extends Component {
   constructor() {
     super()
     this.state = {
-      messageList: [],
+      messageList: []
     }
+
+    socket.on('message', (data) => {
+      console.log('from webSocket',data)
+      const newMsg = new newMessage(data)
+      // this.setState({socketText: data})
+      this.handleSend(newMsg)
+    })
 
     this.handleToneClick = this.handleToneClick.bind(this);
     this.handleSend = this.handleSend.bind(this);
