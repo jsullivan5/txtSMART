@@ -5,6 +5,7 @@ class newMessage {
     this.body = data.Body,
     this.tone = [],
     this.toneView = false
+    this.smsId = data.SmsMessageSid
   }
 }
 

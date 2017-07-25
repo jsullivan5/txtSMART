@@ -48,7 +48,7 @@ var io = require('socket.io')(server);
 
 
 app.post("/sms", function (request, response) {
-
+  console.log(request);
   io.sockets.emit('message', request.body);
 
   response.status(200).send(`<Response></Response>`)
