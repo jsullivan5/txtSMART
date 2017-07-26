@@ -39,7 +39,9 @@ function getHistory(req, res) {
         to: message.to,
         from: message.from,
         tone: '',
-        toneView: false
+        toneView: false,
+        smsId: message.sid
+
       }
     })
 

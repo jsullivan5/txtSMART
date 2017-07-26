@@ -8,6 +8,7 @@ const MessageConsole = ({ messageList, handleToneClick, userNum }) => {
     return (
       <div className='message-console'>
         <h2>Input your phone number to see your texting history</h2>
+        <h2>Send a text to (817)-873-2313 to begin</h2>
       </div>
     )
   }

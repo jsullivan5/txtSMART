@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import 'whatwg-fetch';
 import socket from './assets/sockets.js';
 import newMessage from './AppHelpers/NewMessage.js'
+import AnalyzeDashBoard from './components/AnalyzeDashBoard/AnalyzeDashBoard'
 
 
 class Root extends Component {
@@ -86,8 +87,11 @@ class Root extends Component {
           <MessageConsole messageList={messageList}
                           handleToneClick={this.handleToneClick}
                           userNum={userNumGlobal}/>
-          <SendController className='send-controller'
+          <div>
+            <SendController className='send-controller'
                           getUserNum={this.getUserNum}/>
+            <AnalyzeDashBoard />
+          </div>
         </section>
       </main>
     )
