@@ -81,7 +81,6 @@ form {
   display: inline-block;
 }
 
-textarea {
-  width: 300px;
-  height: 200px;
+input {
+  width: 150px;
 }

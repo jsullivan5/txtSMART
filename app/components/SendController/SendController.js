@@ -25,12 +25,14 @@ class SendController extends Component {
   }
 
   render() {
+    const placeholderText = 'Area code first. No spaces'
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
           Your Phone Number:
           <input type='number' value={this.state.userNum}
-                 onChange={this.handleChange} />
+                 onChange={this.handleChange}
+                 placeholder={placeholderText}/>
         </label>
         <input type="submit" value="Submit" />
       </form>
