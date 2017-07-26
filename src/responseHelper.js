@@ -14,8 +14,9 @@ function getIntroText(array) {
   return (b.score * 100) - (a.score * 100)
   })
 
-  console.log(sorted, 'intsdalk;')
-
+  if(sorted[0].score === 0) {
+    return 'Send a longer message. '
+  }
 
   switch (sorted[0].tone_name) {
     case 'Joy':
