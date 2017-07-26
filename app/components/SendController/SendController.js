@@ -5,7 +5,7 @@ class SendController extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userNum: ''
+      userNumLocal: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -13,15 +13,15 @@ class SendController extends Component {
   }
 
   handleChange(event) {
-    this.setState({ userNum: event.target.value });
+    this.setState({ userNumLocal: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const { userNum } = this.state
+    const { userNumLocal } = this.state
 
-    this.props.userPhoneNum(userNum)
-    this.setState({ userNum: '' })
+    this.props.getUserNum(userNumLocal)
+    this.setState({ userNumLocal: '' })
   }
 
   render() {

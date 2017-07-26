@@ -4,6 +4,8 @@ import { Message } from '../Message/Message';
 
 const MessageConsole = ({ messageList, handleToneClick }) => {
 
+  // const userMessages = messageList.filter(message => )
+
   const messages = messageList.map((message, index) => {
       return <Message messageData={message}
                       key={index}

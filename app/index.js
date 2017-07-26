@@ -14,7 +14,7 @@ class Root extends Component {
     super()
     this.state = {
       messageList: [],
-      userPhoneNum: ''
+      userNumGlobal: ''
     }
 
     socket.on('message', (data) => {
@@ -25,7 +25,7 @@ class Root extends Component {
     })
 
     this.handleToneClick = this.handleToneClick.bind(this);
-    this.userPhoneNum = this.userPhoneNum.bind(this);
+    this.getUserNum = this.getUserNum.bind(this);
   }
 
   componentDidMount() {
@@ -71,12 +71,12 @@ class Root extends Component {
     this.setState({messageList: newState})
   }
 
-  userPhoneNum(number) {
-    this.setState({ userPhoneNum: number })
+  getUserNum(number) {
+    this.setState({ userNumGlobal: number })
   }
 
   render() {
-    const { messageList } = this.state;
+    const { messageList, userNumGlobal } = this.state;
 
     return (
       <main>
@@ -84,9 +84,10 @@ class Root extends Component {
 
         <section>
           <MessageConsole messageList={messageList}
-                          handleToneClick={this.handleToneClick} />
+                          handleToneClick={this.handleToneClick}
+                          userNum={userNumGlobal}/>
           <SendController className='send-controller'
-                          userPhoneNum={this.userPhoneNum}/>
+                          getUserNum={this.getUserNum}/>
         </section>
       </main>
     )
