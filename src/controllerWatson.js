@@ -1,5 +1,7 @@
 var credentials = require('../credentials.js');
-var credentials = require('../credentials.js');
+var helpers = require('./responseHelper.js');
+
+
 
 function getTone(req, res) {
   var requestBody = req.params.content;
@@ -56,19 +58,18 @@ function getToneServer(text, res) {
 
       console.log(toneArray);
 
-      var tones = toneArray.sort(function(a, b) {  (b.score * 100) - (a.score * 100)})
-        .map(function(tone) {
-          return (tone.tone_name + " : " + ((tone.score * 100).toFixed(2)) + "%")
-        })
+      var introText = helpers.getIntroText(toneArray)
+      var tones = helpers.formatArray(toneArray)
 
       res.status(200).send(`
         <Response>
           <Message>
-            ${tones[0].toString()}
-            ${tones[1].toString()}
-            ${tones[2].toString()}
-            ${tones[3].toString()}
-            ${tones[4].toString()}
+          ${introText.toString()}
+          ${tones[0].toString()}
+          ${tones[1].toString()}
+          ${tones[2].toString()}
+          ${tones[3].toString()}
+          ${tones[4].toString()}
           </Message>
         </Response>`)
     }
