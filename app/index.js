@@ -13,7 +13,8 @@ class Root extends Component {
   constructor() {
     super()
     this.state = {
-      messageList: []
+      messageList: [],
+      userPhoneNum: ''
     }
 
     socket.on('message', (data) => {
@@ -24,7 +25,7 @@ class Root extends Component {
     })
 
     this.handleToneClick = this.handleToneClick.bind(this);
-    this.handleSend = this.handleSend.bind(this);
+    this.userPhoneNum = this.userPhoneNum.bind(this);
   }
 
   componentDidMount() {
@@ -70,6 +71,10 @@ class Root extends Component {
     this.setState({messageList: newState})
   }
 
+  userPhoneNum(number) {
+    this.setState({ userPhoneNum: number })
+  }
+
   render() {
     const { messageList } = this.state;
 
@@ -81,7 +86,7 @@ class Root extends Component {
           <MessageConsole messageList={messageList}
                           handleToneClick={this.handleToneClick} />
           <SendController className='send-controller'
-                          handleSend={this.handleSend}/>
+                          userPhoneNum={this.userPhoneNum}/>
         </section>
       </main>
     )

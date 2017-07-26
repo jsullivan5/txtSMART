@@ -5,7 +5,7 @@ class SendController extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sendText: ''
+      userNum: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -13,28 +13,24 @@ class SendController extends Component {
   }
 
   handleChange(event) {
-    this.setState({ sendText: event.target.value });
+    this.setState({ userNum: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const { sendText } = this.state
+    const { userNum } = this.state
 
-    fetch(`/api/send/${sendText}`)
-      .then(response => response.json())
-      .then(data => {
-        this.props.handleSend(data)
-      })
-
-    this.setState({ sendText: '' })
+    this.props.userPhoneNum(userNum)
+    this.setState({ userNum: '' })
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Send Txt:
-          <input type='text' value={this.state.sendText} onChange={this.handleChange} />
+          Your Phone Number:
+          <input type='number' value={this.state.userNum}
+                 onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
