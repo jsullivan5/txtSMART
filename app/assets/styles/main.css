@@ -69,6 +69,10 @@ nav button {
   border-radius: 10%;
 }
 
+h2 {
+  margin: 50px;
+}
+
 /* Send Controller Styles */
 
 .send-controller {
