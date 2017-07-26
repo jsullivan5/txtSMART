@@ -9,6 +9,7 @@ var router = require('./router');
 var session = require('express-session');
 var twilio = require('twilio');
 var http = require('http');
+var watson = require('./controllerWatson')
 
 
 
@@ -46,12 +47,15 @@ var server = http.createServer(app)
 
 var io = require('socket.io')(server);
 
+// app.post("/sms", function (request, response) {
+//   io.sockets.emit('message', request.body);
+//   watson.getToneServer(request.body, response )
+// });
+
 
 app.post("/sms", function (request, response) {
-  console.log(request);
   io.sockets.emit('message', request.body);
-
-  response.status(200).send(`<Response></Response>`)
+  watson.getToneServer(request.body, response )
 });
 
 app.use('/assets', express.static(path.join(__dirname, '../app/assets')));
