@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Message } from '../Message/Message';
 
 
-const MessageConsole = ({ messageList, handleToneClick }) => {
+const MessageConsole = ({ messageList, handleToneClick, userNum }) => {
 
-  // const userMessages = messageList.filter(message => )
-
-  const messages = messageList.map((message, index) => {
+  const messages = messageList
+    .filter(message => message.to === userNum || message.from === userNum)
+    .map((message, index) => {
       return <Message messageData={message}
                       key={index}
                       handleToneClick={handleToneClick} />

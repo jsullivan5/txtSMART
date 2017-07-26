@@ -72,7 +72,7 @@ class Root extends Component {
   }
 
   getUserNum(number) {
-    this.setState({ userNumGlobal: number })
+    this.setState({ userNumGlobal: '+1' + number })
   }
 
   render() {
