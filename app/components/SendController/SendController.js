@@ -34,7 +34,7 @@ class SendController extends Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Send Txt:
-          <textarea value={this.state.sendText} onChange={this.handleChange} />
+          <input type='text' value={this.state.sendText} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>

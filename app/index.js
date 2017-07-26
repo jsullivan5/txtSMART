@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import update from 'react-addons-update';
 import MessageConsole from './components/MessageConsole/MessageConsole';
 import SendController from './components/SendController/SendController';
+import Header from './components/Header/Header';
 import 'whatwg-fetch';
 import socket from './assets/sockets.js';
 import newMessage from './AppHelpers/NewMessage.js'
@@ -74,11 +75,14 @@ class Root extends Component {
 
     return (
       <main>
-        <SendController className='send-controller'
-                        handleSend={this.handleSend}/>
-        <MessageConsole messageList={messageList}
-                        handleToneClick={this.handleToneClick} />
+        <Header />
 
+        <section>
+          <MessageConsole messageList={messageList}
+                          handleToneClick={this.handleToneClick} />
+          <SendController className='send-controller'
+                          handleSend={this.handleSend}/>
+        </section>
       </main>
     )
   }
