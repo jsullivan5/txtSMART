@@ -31,7 +31,6 @@ function sendSms(req, res) {
 
 function getHistory(req, res) {
   var client = require('twilio')(credentials.sidLive, credentials.liveToken);
-
   client.messages.list().then((data) => {
     var messages =  data.map(function(message, index, array) {
       return {
