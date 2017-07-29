@@ -7,7 +7,7 @@ import Header from './components/Header/Header';
 import 'whatwg-fetch';
 import socket from './assets/sockets.js';
 import newMessage from './AppHelpers/NewMessage.js'
-import { containsSubmit } from './AppHelpers/ClientHelpers.js'
+import { containsSubmit, replaceSubmit } from './AppHelpers/ClientHelpers.js'
 import AnalyzeDashBoard from './components/AnalyzeDashBoard/AnalyzeDashBoard'
 
 
@@ -75,12 +75,16 @@ class Root extends Component {
 
     if(containsSubmit(message.body)) {
       console.log('containsSubmit working');
+      const cleanedMessage = replaceSubmit(message)
       const newSubmits = Array.from(this.state.submittedTexts)
-      newSubmits.push(message)
-      console.log(newSubmits);
+
+      console.log(cleanedMessage)
+
+      newSubmits.push(cleanedMessage)
       this.setState({submittedTexts: newSubmits})
       localStorage.setItem('submitted', JSON.stringify(newSubmits))
     }
+
     newState.unshift(newMsgObj)
     this.setState({messageList: newState})
   }
