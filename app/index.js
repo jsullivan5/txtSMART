@@ -9,6 +9,7 @@ import socket from './assets/sockets.js';
 import newMessage from './AppHelpers/NewMessage.js'
 import { containsSubmit, replaceSubmit } from './AppHelpers/ClientHelpers.js'
 import AnalyzeDashBoard from './components/AnalyzeDashBoard/AnalyzeDashBoard'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 
 
@@ -101,12 +102,13 @@ class Root extends Component {
         <Header />
 
         <section>
-          <MessageConsole messageList={messageList}
+          <Route path="/messages" render={() =>
+              <MessageConsole messageList={messageList}
                           handleToneClick={this.handleToneClick}
-                          userNum={userNumGlobal}/>
+                          userNum={userNumGlobal} />} />
           <div>
             <SendController className='send-controller'
-                          getUserNum={this.getUserNum}/>
+                            getUserNum={this.getUserNum}/>
             <AnalyzeDashBoard />
           </div>
         </section>
@@ -115,4 +117,8 @@ class Root extends Component {
   }
 }
 
-render(<Root />, document.getElementById('main'))
+render(
+  <BrowserRouter>
+    <Root />
+  </BrowserRouter>
+  , document.getElementById('main'))
