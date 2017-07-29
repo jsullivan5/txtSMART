@@ -7,7 +7,9 @@ import Header from './components/Header/Header';
 import 'whatwg-fetch';
 import socket from './assets/sockets.js';
 import newMessage from './AppHelpers/NewMessage.js'
+import { containsSubmit } from './AppHelpers/ClientHelpers.js'
 import AnalyzeDashBoard from './components/AnalyzeDashBoard/AnalyzeDashBoard'
+
 
 
 class Root extends Component {
@@ -15,13 +17,13 @@ class Root extends Component {
     super()
     this.state = {
       messageList: [],
+      submittedTexts: [],
       userNumGlobal: ''
     }
 
     socket.on('message', (data) => {
       console.log('from webSocket',data)
       const newMsg = new newMessage(data)
-      // this.setState({socketText: data})
       this.handleSend(newMsg)
     })
 
@@ -30,10 +32,12 @@ class Root extends Component {
   }
 
   componentDidMount() {
+    const storage = JSON.parse(localStorage.getItem('submitted'));
+
     fetch('/api/history')
       .then(response => response.json())
       .then(responseData => {
-        this.setState({messageList: responseData})
+        this.setState({ messageList: responseData, submittedTexts: storage })
       })
       .catch(err => console.log(err))
   }
@@ -68,6 +72,15 @@ class Root extends Component {
     const currentState = this.state.messageList;
     const newMsgObj = Object.assign({}, message, { id: currentState.length + 1 })
     const newState = Array.from(currentState)
+
+    if(containsSubmit(message.body)) {
+      console.log('containsSubmit working');
+      const newSubmits = Array.from(this.state.submittedTexts)
+      newSubmits.push(message)
+      console.log(newSubmits);
+      this.setState({submittedTexts: newSubmits})
+      localStorage.setItem('submitted', JSON.stringify(newSubmits))
+    }
     newState.unshift(newMsgObj)
     this.setState({messageList: newState})
   }
