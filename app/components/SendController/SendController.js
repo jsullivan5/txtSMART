@@ -30,7 +30,7 @@ class SendController extends Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Login with your phone number:
-          <input type='number' value={this.state.userNum}
+          <input type='number' value={this.state.userNumLocal}
                  onChange={this.handleChange}
                  placeholder={placeholderText}/>
         </label>
