@@ -6,7 +6,6 @@ body {
 }
 
 #main h1 {
-  padding: 20px;
   color: white;
   font-weight: bold;
   font-family: sans-serif;
@@ -14,6 +13,14 @@ body {
 
 h1 span {
   color: red;
+}
+
+label {
+  display: block;
+}
+
+#login-submit {
+  width: 50px;
 }
 
 section {
@@ -25,6 +32,7 @@ section {
 
 header {
   display: flex;
+  padding: 0 20px 0 20px;
   height: 10vh;
   justify-content: space-between;
   align-items: center;
@@ -83,6 +91,7 @@ h2 {
 
 form {
   display: inline-block;
+  margin-right: 40px;
 }
 
 input {

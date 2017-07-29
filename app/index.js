@@ -43,7 +43,7 @@ class Root extends Component {
   }
 
   handleToneClick(messageData) {
-    const messageBody = messageData.body
+    const messageBody = encodeURIComponent(messageData.body)
 
     if (messageData.toneView === true) {
       const newData = Object.assign({}, messageData, {toneView: false});

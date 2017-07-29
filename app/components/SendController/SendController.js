@@ -28,13 +28,17 @@ class SendController extends Component {
     const placeholderText = 'Area code first. No spaces'
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Login with your phone number:
-          <input type='number' value={this.state.userNumLocal}
-                 onChange={this.handleChange}
-                 placeholder={placeholderText}/>
+        <label htmlFor='login'>
+          Login with your phone #:
         </label>
-        <input type="submit" value="Submit" />
+        <input type='number'
+               id='login'
+               value={this.state.userNumLocal}
+               onChange={this.handleChange}
+               placeholder={placeholderText} />
+        <input type="submit"
+               value="Login"
+               id='login-submit'/>
       </form>
     );
   }
