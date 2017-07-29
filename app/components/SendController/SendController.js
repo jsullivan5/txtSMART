@@ -29,7 +29,7 @@ class SendController extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Your Phone Number:
+          Login with your phone number:
           <input type='number' value={this.state.userNum}
                  onChange={this.handleChange}
                  placeholder={placeholderText}/>

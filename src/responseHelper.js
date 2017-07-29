@@ -15,7 +15,7 @@ function getIntroText(array) {
   })
 
   if(sorted[0].score === 0) {
-    return 'Send a longer message. '
+    return 'Try a longer message. '
   }
 
   switch (sorted[0].tone_name) {
