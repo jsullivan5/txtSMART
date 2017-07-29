@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import update from 'react-addons-update';
 import MessageConsole from './components/MessageConsole/MessageConsole';
-import SendController from './components/SendController/SendController';
 import Header from './components/Header/Header';
 import 'whatwg-fetch';
 import socket from './assets/sockets.js';
@@ -99,7 +98,7 @@ class Root extends Component {
 
     return (
       <main>
-        <Header />
+        <Header getUserNum={this.getUserNum} />
 
         <section>
           <Route path="/messages" render={() =>
@@ -107,8 +106,6 @@ class Root extends Component {
                           handleToneClick={this.handleToneClick}
                           userNum={userNumGlobal} />} />
           <div>
-            <SendController className='send-controller'
-                            getUserNum={this.getUserNum}/>
             <AnalyzeDashBoard />
           </div>
         </section>

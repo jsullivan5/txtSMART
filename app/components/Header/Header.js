@@ -1,6 +1,7 @@
 import React from 'react';
+import SendController from '../SendController/SendController';
 
-const Header = () => {
+const Header = ({ getUserNum }) => {
   return (
     <header>
       <h1>txt<span>SMART</span></h1>
@@ -8,6 +9,8 @@ const Header = () => {
         <button>Home</button>
         <button>How To</button>
       </nav>
+      <SendController className='send-controller'
+                      getUserNum={getUserNum}/>
     </header>
   );
 }
