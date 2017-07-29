@@ -1,4 +1,3 @@
-// const Server = require('./server');
 var path = require('path');
 var express = require('express');
 var cors = require('express-cors');
@@ -46,12 +45,6 @@ var server = http.createServer(app)
                   });
 
 var io = require('socket.io')(server);
-
-// app.post("/sms", function (request, response) {
-//   io.sockets.emit('message', request.body);
-//   watson.getToneServer(request.body, response )
-// });
-
 
 app.post("/sms", function (request, response) {
   io.sockets.emit('message', request.body);

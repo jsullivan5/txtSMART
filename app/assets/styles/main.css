@@ -2,28 +2,48 @@ body {
   background: #f4f4f4;
   font-family: sans-serif;
   font-weight: 100;
+  margin: 0;
 }
 
 #main h1 {
   padding: 20px;
-  border-bottom: 1px dashed #aaa;
-  color: rgba(0,0,0,0.6);
-  font-weight: 100;
+  color: white;
+  font-weight: bold;
   font-family: sans-serif;
 }
 
-#main {
+h1 span {
+  color: red;
+}
+
+section {
   text-align: center;
   display: flex;
-  flex-direction: column;
+}
+
+/*Header Styles*/
+
+header {
+  display: flex;
+  height: 10vh;
+  justify-content: space-between;
+  align-items: center;
+  background-color: gray;
+  width: 100%
+}
+
+nav button {
+  margin: 10px;
 }
 
 /*Message Console Styles*/
 
 .message-console {
   width: 600px;
-  height: 100vh;
+  height: 90vh;
   overflow-y: scroll;
+  background-color: white;
+  border-right: 1px solid gray;
 }
 
 .message-wrapper {
@@ -49,6 +69,10 @@ body {
   border-radius: 10%;
 }
 
+h2 {
+  margin: 50px;
+}
+
 /* Send Controller Styles */
 
 .send-controller {
@@ -59,10 +83,8 @@ body {
 
 form {
   display: inline-block;
-  float: right;
 }
 
-textarea {
-  width: 300px;
-  height: 200px;
+input {
+  width: 150px;
 }
