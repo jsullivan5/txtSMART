@@ -109,12 +109,12 @@ class Root extends Component {
                 history={history}/>
 
         <section>
-          <Route exact path="/messages" render={({ match }) =>
+          <Route exact path="/messages" render={({ location }) =>
             <MessageConsole messageList={messageList}
                         handleToneClick={this.handleToneClick}
                         userNum={userNumGlobal}
                         history={history} />} />
-            <Route exact path="/community" render={({ match }) =>
+                      <Route exact path="/community" render={({ location }) =>
               <MessageConsole messageList={submittedTexts}
                         handleToneClick={this.handleToneClick}
                         userNum={'+'}
