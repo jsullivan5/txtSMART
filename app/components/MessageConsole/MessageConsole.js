@@ -3,7 +3,9 @@ import { Message } from '../Message/Message';
 
 
 const MessageConsole = ({ messageList, handleToneClick, userNum, history }) => {
-  console.log(location);
+  const filterMessages = (messages) => message.to === userNum || message.from === userNum;
+  const filterCommunity = (messages) => true
+
   if (userNum.length === 0) {
     return (
       <div className='message-console'>
@@ -17,7 +19,7 @@ const MessageConsole = ({ messageList, handleToneClick, userNum, history }) => {
   }
 
   const messages = messageList
-    .filter(location === messages ? message => message.to === userNum || message.from === userNum : messages => true)
+    .filter(location === messages ? filterMessages : filterCommunity)
     .map((message, index) => {
       return <Message messageData={message}
                       key={index}
