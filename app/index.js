@@ -46,15 +46,20 @@ class Root extends Component {
       .catch(err => console.log(err))
   }
 
-  handleToneClick(messageData) {
+  handleToneClick(messageData, path) {
+    console.log(path);
+    const messages = path === '/messages' ? this.state.messageList : this.state.submittedTexts
+    const messageKey = path === '/messages' ? 'messageList' : 'submittedTexts'
     const messageBody = encodeURIComponent(messageData.body)
+
+    console.log(messages);
 
     if (messageData.toneView === true) {
       const newData = Object.assign({}, messageData, {toneView: false});
-      const msgArray = Array.from(this.state.messageList);
+      const msgArray = Array.from(messages);
       const newIndex = msgArray.indexOf(messageData)
       msgArray[newIndex] = newData;
-      this.setState({ messageList: msgArray})
+      this.setState({ messageKey: msgArray})
       return
     }
 
@@ -65,10 +70,10 @@ class Root extends Component {
       .then(responseData => {
         const tones = responseData.document_tone.tone_categories[0].tones
         const newData = Object.assign({}, messageData, {tone: tones}, {toneView: true})
-        const msgArray = Array.from(this.state.messageList);
+        const msgArray = Array.from(messages);
         const newIndex = msgArray.indexOf(messageData)
         msgArray[newIndex] = newData;
-        this.setState({ messageList: msgArray})
+        this.setState({ [messageKey]: msgArray})
       })
   }
 

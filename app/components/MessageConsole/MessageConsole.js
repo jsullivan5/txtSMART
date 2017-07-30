@@ -33,7 +33,8 @@ class MessageConsole extends Component {
       .map((message, index) => {
         return <Message messageData={message}
                         key={index}
-                        handleToneClick={this.props.handleToneClick} />
+                        handleToneClick={this.props.handleToneClick}
+                        location={location.pathname}/>
       });
   }
 

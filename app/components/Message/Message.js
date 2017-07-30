@@ -1,6 +1,8 @@
 import React from 'react';
 
 export const Message = ({ messageData, handleToneClick }) => {
+
+  console.log(location.pathname, 'in the message');
   let toneData;
 
   if (messageData.toneView === true) {
@@ -18,7 +20,7 @@ export const Message = ({ messageData, handleToneClick }) => {
   return (
     <div className='message-wrapper'>
       <div className={messageClass}
-           onClick={(e) => handleToneClick(messageData)}>
+           onClick={(e) => handleToneClick(messageData, location.pathname)}>
         <p>{messageData.body}</p>
         {toneData || null}
       </div>
