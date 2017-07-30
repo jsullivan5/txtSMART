@@ -11,15 +11,6 @@ body {
   font-family: sans-serif;
 }
 
-
-   #chatmessages
-   {
-       overflow:   auto;
-       position:   absolute;
-       bottom:     0;
-       max-height: 400px;
-   }
-
 h1 span {
   color: red;
 }
@@ -32,9 +23,11 @@ label {
   width: 50px;
 }
 
+
 section {
   text-align: center;
   display: flex;
+  justify-content: center;
 }
 
 /*Header Styles*/

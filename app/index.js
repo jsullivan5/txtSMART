@@ -27,7 +27,6 @@ class Root extends Component {
     }
 
     socket.on('message', (data) => {
-      console.log('from webSocket',data)
       const newMsg = new newMessage(data)
       this.handleSend(newMsg)
     })
@@ -109,7 +108,7 @@ class Root extends Component {
                 history={history}/>
 
         <section>
-          <Route exact path="/messages" render={({ location }) =>
+          <Route exact path="/messages" render={ ({ location }) =>
             <MessageConsole messageList={messageList}
                         handleToneClick={this.handleToneClick}
                         userNum={userNumGlobal}
@@ -119,9 +118,6 @@ class Root extends Component {
                         handleToneClick={this.handleToneClick}
                         userNum={'+'}
                         history={history} />} />
-          <div>
-            <AnalyzeDashBoard />
-          </div>
         </section>
       </main>
     )
