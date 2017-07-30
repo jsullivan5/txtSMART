@@ -41,7 +41,7 @@ class Root extends Component {
     fetch('/api/history')
       .then(response => response.json())
       .then(responseData => {
-        this.setState({ messageList: responseData, submittedTexts: storage })
+        this.setState({ messageList: responseData.reverse(), submittedTexts: storage })
       })
       .catch(err => console.log(err))
   }
@@ -78,18 +78,15 @@ class Root extends Component {
     const newState = Array.from(currentState)
 
     if(containsSubmit(message.body)) {
-      console.log('containsSubmit working');
       const cleanedMessage = replaceSubmit(message)
       const newSubmits = Array.from(this.state.submittedTexts)
-
-      console.log(cleanedMessage)
 
       newSubmits.push(cleanedMessage)
       this.setState({submittedTexts: newSubmits})
       localStorage.setItem('submitted', JSON.stringify(newSubmits))
     }
 
-    newState.unshift(newMsgObj)
+    newState.push(newMsgObj)
     this.setState({messageList: newState})
   }
 
@@ -113,7 +110,7 @@ class Root extends Component {
                         handleToneClick={this.handleToneClick}
                         userNum={userNumGlobal}
                         history={history} />} />
-                      <Route exact path="/community" render={({ location }) =>
+          <Route exact path="/community" render={({ location }) =>
               <MessageConsole messageList={submittedTexts}
                         handleToneClick={this.handleToneClick}
                         userNum={'+'}

@@ -1,5 +1,5 @@
 body {
-  background: #f4f4f4;
+  background: #DFDCE3;
   font-family: sans-serif;
   font-weight: 100;
   margin: 0;
@@ -9,14 +9,26 @@ body {
   color: white;
   font-weight: bold;
   font-family: sans-serif;
+  margin: 0;
 }
 
-h1 span {
-  color: red;
+span {
+  color: #985E6D;
+}
+
+.tag-line {
+  color: #FFF;
+  margin: 0;
+  font-size: .5em;
+}
+
+.tag-line span {
+  font-style: italic;
 }
 
 label {
   display: block;
+  color: #FFF;
 }
 
 #login-submit {
@@ -38,12 +50,22 @@ header {
   height: 10vh;
   justify-content: space-between;
   align-items: center;
-  background-color: gray;
+  background-color: #494E6B;
   width: 100%
 }
 
-nav button {
+a {
   margin: 10px;
+  text-decoration: none;
+  background-color: #98878F;
+  padding: 10px;
+  color: #FFF;
+  border-radius: 25px;
+}
+
+.selected {
+  color: #192231;
+  border: 3px solid #DFDCE3;
 }
 
 /*Message Console Styles*/

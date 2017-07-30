@@ -8,9 +8,12 @@ const Header = ({ getUserNum, history }) => {
   history.listen()
   return (
     <header>
-      <h1>txt<span>SMART</span></h1>
+      <div>
+        <h1>txt<span>SMART</span></h1>
+        <p className='tag-line'>Say the right (or <span>wrong</span>) thing</p>
+      </div>
       <nav>
-        <NavLink to='/'
+        <NavLink exact to='/'
           activeClassName='selected'>
           Home
         </NavLink>
