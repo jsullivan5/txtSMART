@@ -11,6 +11,15 @@ body {
   font-family: sans-serif;
 }
 
+
+   #chatmessages
+   {
+       overflow:   auto;
+       position:   absolute;
+       bottom:     0;
+       max-height: 400px;
+   }
+
 h1 span {
   color: red;
 }

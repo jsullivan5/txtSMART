@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Message } from '../Message/Message';
 
 
-const MessageConsole = ({ messageList, handleToneClick, userNum }) => {
-
+const MessageConsole = ({ messageList, handleToneClick, userNum, history }) => {
+  console.log(this);
   if (userNum.length === 0) {
     return (
       <div className='message-console'>
@@ -23,6 +23,8 @@ const MessageConsole = ({ messageList, handleToneClick, userNum }) => {
                       key={index}
                       handleToneClick={handleToneClick} />
     })
+
+  // const communityTexts =
 
   return (
     <div className='message-console'>

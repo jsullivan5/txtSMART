@@ -1,7 +1,7 @@
 class newMessage {
   constructor(data) {
-    this.from = data.From,
-    this.to = data.To,
+    this.from = 'anonymous'
+    this.to = 'anonymous'
     this.body = data.Body,
     this.tone = [],
     this.toneView = false

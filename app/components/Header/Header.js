@@ -2,7 +2,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import SendController from '../SendController/SendController';
 
-const Header = ({ getUserNum }) => {
+const Header = ({ getUserNum, history }) => {
+  console.log(history);
+
+  history.listen()
   return (
     <header>
       <h1>txt<span>SMART</span></h1>

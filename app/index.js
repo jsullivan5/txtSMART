@@ -8,9 +8,14 @@ import socket from './assets/sockets.js';
 import newMessage from './AppHelpers/NewMessage.js'
 import { containsSubmit, replaceSubmit } from './AppHelpers/ClientHelpers.js'
 import AnalyzeDashBoard from './components/AnalyzeDashBoard/AnalyzeDashBoard'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory'
 
+const history = createHistory()
 
+history.listen(() => {
+  console.log('OK')
+})
 
 class Root extends Component {
   constructor() {
@@ -93,18 +98,27 @@ class Root extends Component {
     this.setState({ userNumGlobal: '+1' + number })
   }
 
+
+
   render() {
-    const { messageList, userNumGlobal } = this.state;
+    const { messageList, userNumGlobal, submittedTexts } = this.state;
 
     return (
       <main>
-        <Header getUserNum={this.getUserNum} />
+        <Header getUserNum={this.getUserNum}
+                history={history}/>
 
         <section>
-          <Route path="/messages" render={() =>
-              <MessageConsole messageList={messageList}
-                          handleToneClick={this.handleToneClick}
-                          userNum={userNumGlobal} />} />
+          <Route exact path="/messages" render={({ match }) =>
+            <MessageConsole messageList={messageList}
+                        handleToneClick={this.handleToneClick}
+                        userNum={userNumGlobal}
+                        history={history} />} />
+            <Route exact path="/community" render={({ match }) =>
+              <MessageConsole messageList={submittedTexts}
+                        handleToneClick={this.handleToneClick}
+                        userNum={'+'}
+                        history={history} />} />
           <div>
             <AnalyzeDashBoard />
           </div>
@@ -115,7 +129,7 @@ class Root extends Component {
 }
 
 render(
-  <BrowserRouter>
+  <BrowserRouter history={history}>
     <Root />
   </BrowserRouter>
   , document.getElementById('main'))
