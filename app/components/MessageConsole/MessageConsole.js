@@ -17,7 +17,6 @@ class MessageConsole extends Component {
 
   componentWillReceiveProps(nextProps) {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
-    console.log('receive props',elem);
     if (elem) {
       console.log('in the if');
       elem.scrollIntoView(true);
