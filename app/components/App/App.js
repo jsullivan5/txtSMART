@@ -3,10 +3,10 @@ import { render } from 'react-dom';
 import MessageConsole from '../MessageConsole/MessageConsole';
 import Header from '../Header/Header';
 import 'whatwg-fetch';
-// import socket from '../../assets/sockets.js';
-import newMessage from '../../AppHelpers/NewMessage.js'
-import { containsSubmit, replaceSubmit } from '../../AppHelpers/ClientHelpers.js'
-import Home from '../Home/Home'
+import socket from '../../assets/sockets.js';
+import newMessage from '../../AppHelpers/NewMessage.js';
+import { containsSubmit, replaceSubmit } from '../../AppHelpers/ClientHelpers.js';
+import Home from '../Home/Home';
 import { Route } from 'react-router-dom';
 
 
@@ -19,10 +19,10 @@ class App extends Component {
       userNumGlobal: ''
     }
 
-    // socket.on('message', (data) => {
-    //   const newMsg = new newMessage(data)
-    //   this.handleSend(newMsg)
-    // })
+    socket.on('message', (data) => {
+      const newMsg = new newMessage(data);
+      this.acceptIncomingText(newMsg);
+    });
 
     this.handleToneClick = this.handleToneClick.bind(this);
     this.getUserNum = this.getUserNum.bind(this);
@@ -36,23 +36,25 @@ class App extends Component {
       .then(responseData => {
         this.setState({ messageList: responseData.reverse(), submittedTexts: storage })
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
 
-  handleToneClick(messageData, path) {
-    console.log(path);
-    const messages = path === '/messages' ? this.state.messageList : this.state.submittedTexts
-    const messageKey = path === '/messages' ? 'messageList' : 'submittedTexts'
-    const messageBody = encodeURIComponent(messageData.body)
+  updateIndivMsg(bool, messageKey, messageData, messages, obj) {
+    const newData = Object.assign({}, messageData, obj , {toneView: bool});
+    const msgArray = Array.from(messages);
+    const newIndex = msgArray.indexOf(messageData);
+    msgArray[newIndex] = newData;
+    this.setState({ [messageKey]: msgArray });
+  }
 
-    console.log(messages);
+
+  handleToneClick(messageData, path) {
+    const messages = path === '/messages' ? this.state.messageList : this.state.submittedTexts;
+    const messageKey = path === '/messages' ? 'messageList' : 'submittedTexts';
+    const messageBody = encodeURIComponent(messageData.body);
 
     if (messageData.toneView === true) {
-      const newData = Object.assign({}, messageData, {toneView: false});
-      const msgArray = Array.from(messages);
-      const newIndex = msgArray.indexOf(messageData)
-      msgArray[newIndex] = newData;
-      this.setState({ [messageKey]: msgArray})
+      this.updateIndivMsg(false, messageKey, messageData, messages, null);
       return
     }
 
@@ -61,63 +63,53 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(responseData => {
-        const tones = responseData.document_tone.tone_categories[0].tones
-        const newData = Object.assign({}, messageData, {tone: tones}, {toneView: true})
-        const msgArray = Array.from(messages);
-        const newIndex = msgArray.indexOf(messageData)
-        msgArray[newIndex] = newData;
-        this.setState({ [messageKey]: msgArray})
-      })
+        const tones = { tone: responseData.document_tone.tone_categories[0].tones };
+        this.updateIndivMsg(true, messageKey, messageData, messages, tones);
+      });
   }
 
-  handleSend(message) {
+  acceptIncomingText(message) {
     const currentState = this.state.messageList;
-    const newMsgObj = Object.assign({}, message, { id: currentState.length + 1 })
-    const newState = Array.from(currentState)
+    const newMsgObj = Object.assign({}, message, { id: currentState.length + 1 });
+    const newState = Array.from(currentState);
 
     if(containsSubmit(message.body)) {
-      const cleanedMessage = replaceSubmit(message)
-      const newSubmits = Array.from(this.state.submittedTexts)
+      const cleanedMessage = replaceSubmit(message);
+      const newSubmits = Array.from(this.state.submittedTexts);
 
-      newSubmits.push(cleanedMessage)
-      this.setState({submittedTexts: newSubmits})
-      localStorage.setItem('submitted', JSON.stringify(newSubmits))
+      newSubmits.push(cleanedMessage);
+      this.setState({submittedTexts: newSubmits});
+      localStorage.setItem('submitted', JSON.stringify(newSubmits));
     }
 
-    newState.push(newMsgObj)
-    this.setState({messageList: newState})
+    newState.push(newMsgObj);
+    this.setState({messageList: newState});
   }
 
   getUserNum(number) {
-    this.setState({ userNumGlobal: '+1' + number })
+    this.setState({ userNumGlobal: '+1' + number });
   }
-
-
 
   render() {
     const { messageList, userNumGlobal, submittedTexts } = this.state;
 
     return (
       <main>
-        <Header getUserNum={this.getUserNum}
-                history={history}/>
-
+        <Header getUserNum={this.getUserNum} />
         <section>
           <Route exact path={'/'} component={Home} />
-          <Route exact path="/messages" render={ ({ location }) =>
+          <Route path="/messages" render={ ({ location }) =>
             <MessageConsole messageList={messageList}
-                        handleToneClick={this.handleToneClick}
-                        userNum={userNumGlobal}
-                        history={history} />} />
-          <Route exact path="/community" render={({ location }) =>
+                            handleToneClick={this.handleToneClick}
+                            userNum={userNumGlobal} /> } />
+          <Route path="/community" render={({ location }) =>
               <MessageConsole messageList={submittedTexts}
-                        handleToneClick={this.handleToneClick}
-                        userNum={'+'}
-                        history={history} />} />
+                              handleToneClick={this.handleToneClick}
+                              userNum={'+'} /> } />
         </section>
       </main>
-    )
+    );
   }
 }
 
-export default App
+export default App;
