@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Message = ({ messageData, handleToneClick }) => {
+const Message = ({ messageData, handleToneClick }) => {
   let toneData;
 
   if (messageData.toneView === true) {
@@ -25,3 +25,5 @@ export const Message = ({ messageData, handleToneClick }) => {
     </div>
   );
 }
+
+export default Message;
