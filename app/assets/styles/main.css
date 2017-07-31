@@ -1,49 +1,128 @@
 body {
-  background: #f4f4f4;
+  background: #DFDCE3;
   font-family: sans-serif;
   font-weight: 100;
   margin: 0;
 }
 
 #main h1 {
-  padding: 20px;
   color: white;
   font-weight: bold;
   font-family: sans-serif;
+  margin: 0;
 }
 
-h1 span {
-  color: red;
+span {
+  color: #985E6D;
+}
+
+.tag-line {
+  color: #FFF;
+  margin: 0;
+  font-size: .5em;
+}
+
+.tag-line span {
+  font-style: italic;
+}
+
+label {
+  display: block;
+  color: #FFF;
+}
+
+#login-submit {
+  width: 50px;
+}
+
+.home-page {
+  text-align: left;
+  width: 800px;
+  background-color: #FDFDFD;
+  margin-top: 50px;
+  padding: 20px;
+  color: #192231;
+  border: 2px solid #494E6B;
+}
+
+#home-txt-logo {
+  background-color: #494E6B;
+  padding: 5px 0 5px 5px;
+  color: #FFF;
+  border-radius: 25px;
+}
+
+#home-smart-logo {
+  background-color: #494E6B;
+  padding: 5px 5px 5px 0;
+  border-radius: 25px;
+
+}
+
+#sample-photo {
+  height: 300px;
+  float:right;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  box-shadow: 5px 2px 2px #192231;
+}
+
+.inline-number {
+  font-size: 1.2em;
 }
 
 section {
   text-align: center;
   display: flex;
+  justify-content: center;
 }
 
 /*Header Styles*/
 
 header {
   display: flex;
+  padding: 0 20px 0 20px;
   height: 10vh;
   justify-content: space-between;
   align-items: center;
-  background-color: gray;
+  background-color: #494E6B;
   width: 100%
 }
 
-nav button {
+a {
   margin: 10px;
+  text-decoration: none;
+  background-color: #98878F;
+  padding: 10px;
+  color: #FFF;
+  border-radius: 25px;
+}
+
+.selected {
+  color: #192231;
+  border: 3px solid #DFDCE3;
 }
 
 /*Message Console Styles*/
+#reminder-txt {
+  height: 5vh;
+  background-color: #192231;
+  color: #FFF;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .message-console {
   width: 600px;
-  height: 90vh;
+  height: 85vh;
   overflow-y: scroll;
-  background-color: white;
-  border-right: 1px solid gray;
+  background-color: #FDFDFD;
+  border-left: 1px solid #494E6B;
+  border-left: 1px solid #494E6B;
+  border-right: 1px solid #494E6B;
+
 }
 
 .message-wrapper {
@@ -69,9 +148,7 @@ nav button {
   border-radius: 10%;
 }
 
-h2 {
-  margin: 50px;
-}
+
 
 /* Send Controller Styles */
 
@@ -83,6 +160,7 @@ h2 {
 
 form {
   display: inline-block;
+  margin-right: 40px;
 }
 
 input {

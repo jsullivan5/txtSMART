@@ -65,12 +65,14 @@ function getToneServer(text, res) {
         <Response>
           <Message>
           ${introText.toString()}
-          
+
           ${tones[0].toString()}
           ${tones[1].toString()}
           ${tones[2].toString()}
           ${tones[3].toString()}
           ${tones[4].toString()}
+
+          For more insights, go to http://example.com
           </Message>
         </Response>`)
     }

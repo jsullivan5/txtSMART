@@ -1,6 +1,7 @@
 import React from 'react';
 
-export const Message = ({ messageData, handleToneClick }) => {
+const Message = ({ messageData, handleToneClick }) => {
+  const messageClassName = messageData.from === '+18178732313' ? 'send' : 'receive';
   let toneData;
 
   if (messageData.toneView === true) {
@@ -13,15 +14,15 @@ export const Message = ({ messageData, handleToneClick }) => {
     });
   }
 
-  const messageClass = messageData.from === '+18178732313' ? 'send' : 'receive';
-
   return (
     <div className='message-wrapper'>
-      <div className={messageClass}
-           onClick={(e) => handleToneClick(messageData)}>
+      <div className={messageClassName}
+           onClick={(e) => handleToneClick(messageData, location.pathname)}>
         <p>{messageData.body}</p>
         {toneData || null}
       </div>
     </div>
   );
 }
+
+export default Message;

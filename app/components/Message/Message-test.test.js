@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import { Message } from './Message'
+import Message from './Message'
 
 import { mockDataSend, mockDataRecieve, mockDataToneView } from './MessageTestStubs'
 
@@ -44,7 +44,7 @@ describe('Message component', () => {
 
     const wrapper2 = shallow(<Message messageData={mockDataToneView}
       handleToneClick={mockClickFunc}/>)
-  
+
     expect(wrapper2.contains(<p>happy: 5</p>)).toBe(true)
   })
 
