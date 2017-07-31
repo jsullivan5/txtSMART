@@ -4,7 +4,7 @@ import update from 'react-addons-update';
 import MessageConsole from './components/MessageConsole/MessageConsole';
 import Header from './components/Header/Header';
 import 'whatwg-fetch';
-import socket from './assets/sockets.js';
+// import socket from './assets/sockets.js';
 import newMessage from './AppHelpers/NewMessage.js'
 import { containsSubmit, replaceSubmit } from './AppHelpers/ClientHelpers.js'
 import Home from './components/Home/Home'
@@ -12,10 +12,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory'
 
 const history = createHistory()
-
-history.listen(() => {
-  console.log('OK')
-})
 
 class Root extends Component {
   constructor() {
@@ -26,10 +22,10 @@ class Root extends Component {
       userNumGlobal: ''
     }
 
-    socket.on('message', (data) => {
-      const newMsg = new newMessage(data)
-      this.handleSend(newMsg)
-    })
+    // socket.on('message', (data) => {
+    //   const newMsg = new newMessage(data)
+    //   this.handleSend(newMsg)
+    // })
 
     this.handleToneClick = this.handleToneClick.bind(this);
     this.getUserNum = this.getUserNum.bind(this);
@@ -132,3 +128,5 @@ render(
     <Root />
   </BrowserRouter>
   , document.getElementById('main'))
+
+  export default Root;
