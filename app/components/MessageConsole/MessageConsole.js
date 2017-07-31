@@ -9,6 +9,7 @@ class MessageConsole extends Component {
 
   componentDidMount() {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
+    
     if (elem) {
       elem.scrollIntoView(true);
     }
@@ -16,6 +17,7 @@ class MessageConsole extends Component {
 
   componentWillReceiveProps(nextProps) {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
+
     if (elem) {
       elem.scrollIntoView(true);
     }
