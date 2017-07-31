@@ -35,6 +35,18 @@ label {
   width: 50px;
 }
 
+.home-page {
+  text-align: left;
+  width: 800px;
+  background-color: #FFF;
+  margin-top: 50px;
+  padding: 20px;
+  color: #192231;
+}
+
+.inline-number {
+  font-size: 1.2em;
+}
 
 section {
   text-align: center;
@@ -101,9 +113,7 @@ a {
   border-radius: 10%;
 }
 
-h2 {
-  margin: 50px;
-}
+
 
 /* Send Controller Styles */
 

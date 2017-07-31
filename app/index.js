@@ -7,7 +7,7 @@ import 'whatwg-fetch';
 import socket from './assets/sockets.js';
 import newMessage from './AppHelpers/NewMessage.js'
 import { containsSubmit, replaceSubmit } from './AppHelpers/ClientHelpers.js'
-import AnalyzeDashBoard from './components/AnalyzeDashBoard/AnalyzeDashBoard'
+import Home from './components/Home/Home'
 import { BrowserRouter, Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory'
 
@@ -110,6 +110,7 @@ class Root extends Component {
                 history={history}/>
 
         <section>
+          <Route exact path={'/'} component={Home} />
           <Route exact path="/messages" render={ ({ location }) =>
             <MessageConsole messageList={messageList}
                         handleToneClick={this.handleToneClick}
