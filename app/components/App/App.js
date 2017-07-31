@@ -52,7 +52,7 @@ class App extends Component {
       const msgArray = Array.from(messages);
       const newIndex = msgArray.indexOf(messageData)
       msgArray[newIndex] = newData;
-      this.setState({ messageKey: msgArray})
+      this.setState({ [messageKey]: msgArray})
       return
     }
 
