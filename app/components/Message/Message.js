@@ -1,8 +1,6 @@
 import React from 'react';
 
 export const Message = ({ messageData, handleToneClick }) => {
-
-  console.log(location.pathname, 'in the message');
   let toneData;
 
   if (messageData.toneView === true) {

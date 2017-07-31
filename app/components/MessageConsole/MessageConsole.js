@@ -25,7 +25,7 @@ class MessageConsole extends Component {
 
   displayMessages() {
     const filterMessages = (message) => message.to === this.props.userNum ||
-                                      message.from === this.props.userNum;
+    message.from === this.props.userNum;
     const filterCommunity = (message) => true;
 
     return this.props.messageList.filter(location.pathname === '/messages' ? filterMessages : filterCommunity)
@@ -38,6 +38,7 @@ class MessageConsole extends Component {
   }
 
   render() {
+    console.log(this.props.userNum);
     if (this.props.userNum.length === 0 || this.props.messageList.length === 0) {
       return (
         <div className='message-console'>
@@ -51,7 +52,7 @@ class MessageConsole extends Component {
       <div>
         <p id='reminder-txt'>Don't forget to submit texts by starting them with #submit </p>
         <div className='message-console'>
-          {this.displayMessages(this.props.messageList)}
+          {this.displayMessages()}
           <div ref='scroller'></div>
         </div>
       </div>
