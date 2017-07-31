@@ -3,7 +3,6 @@ import Message from '../Message/Message';
 import ReactDOM from 'react-dom';
 
 class MessageConsole extends Component {
-  // ({ messageList, handleToneClick, userNum, history }) =>
   constructor(props){
     super(props)
   }
@@ -18,22 +17,22 @@ class MessageConsole extends Component {
   componentWillReceiveProps(nextProps) {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
     if (elem) {
-      console.log('in the if');
       elem.scrollIntoView(true);
     }
   }
 
   displayMessages() {
     const filterMessages = (message) => message.to === this.props.userNum ||
-    message.from === this.props.userNum;
+      message.from === this.props.userNum;
     const filterCommunity = (message) => true;
+    const filterCallback = location.pathname === '/messages' ? filterMessages : filterCommunity;
 
-    return this.props.messageList.filter(location.pathname === '/messages' ? filterMessages : filterCommunity)
+    return this.props.messageList.filter(filterCallback)
       .map((message, index) => {
         return <Message messageData={message}
                         key={index}
                         handleToneClick={this.props.handleToneClick}
-                        location={location.pathname}/>
+                        location={location.pathname} />
       });
   }
 
@@ -44,7 +43,7 @@ class MessageConsole extends Component {
           <p>We are either loading, or you havn't logged in with your number...</p>
           <img src='https://media.giphy.com/media/7LeoaJAXokpaM/giphy.gif'/>
         </div>
-      )
+      );
     }
 
     return (
@@ -55,10 +54,8 @@ class MessageConsole extends Component {
           <div ref='scroller'></div>
         </div>
       </div>
-    )
+    );
   }
-
-
 }
 
-export default MessageConsole
+export default MessageConsole;
