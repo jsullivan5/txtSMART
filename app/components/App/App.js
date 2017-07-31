@@ -7,10 +7,8 @@ import socket from '../../assets/sockets.js';
 import newMessage from '../../AppHelpers/NewMessage.js'
 import { containsSubmit, replaceSubmit } from '../../AppHelpers/ClientHelpers.js'
 import Home from '../Home/Home'
-import { BrowserRouter, Route } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory'
+import { Route } from 'react-router-dom';
 
-const history = createHistory()
 
 class App extends Component {
   constructor() {
