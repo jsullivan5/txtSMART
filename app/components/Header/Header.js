@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import SendController from '../SendController/SendController';
+import Login from '../Login/Login';
 
 const Header = ({ getUserNum }) => {
   return (
@@ -23,7 +23,7 @@ const Header = ({ getUserNum }) => {
           Texts From Last Night
         </NavLink>
       </nav>
-      <SendController className='send-controller'
+      <Login className='send-controller'
                       getUserNum={getUserNum}/>
     </header>
   );

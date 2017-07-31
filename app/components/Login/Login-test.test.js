@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
-import SendController from './SendController';
+import Login from './Login';
 
-describe('Send Controller component', () => {
+describe('Login component', () => {
   it('should mount', () => {
-    const wrapper = shallow(<SendController />);
+    const wrapper = shallow(<Login />);
 
     expect(wrapper.find('form').length).toBe(1);
   });
@@ -15,7 +15,7 @@ describe('Send Controller component', () => {
 
     const mockGetUserNum = jest.fn();
     const onChange = jest.fn();
-    const wrapper = mount(<SendController onChange={onChange} getUserNum={mockGetUserNum} />);
+    const wrapper = mount(<Login onChange={onChange} getUserNum={mockGetUserNum} />);
     const form = wrapper.find('form');
     const input = wrapper.find('#login');
 

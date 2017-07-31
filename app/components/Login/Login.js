@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 
-class SendController extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userNumLocal: ''
-    };
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,15 +18,15 @@ class SendController extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { userNumLocal } = this.state
+    const { userNumLocal } = this.state;
 
-    this.props.getUserNum(userNumLocal)
-    this.setState({ userNumLocal: '' })
+    this.props.getUserNum(userNumLocal);
+    this.setState({ userNumLocal: '' });
   }
 
   render() {
     const placeholderText = 'Area code first. No spaces';
-    
+
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor='login'>
@@ -39,10 +39,10 @@ class SendController extends Component {
                placeholder={placeholderText} />
         <input type="submit"
                value="Login"
-               id='login-submit'/>
+               id='login-submit' />
       </form>
     );
   }
 }
 
-export default SendController;
+export default Login;
