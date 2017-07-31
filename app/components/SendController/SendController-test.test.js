@@ -2,22 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import SendController from './SendController';
-import fetchMock from 'fetch-mock';
 
 describe('Send Controller component', () => {
-  const response = {
-    body: 'String',
-    to: '5555555',
-    from: '1111111',
-    tone: '',
-    toneView: false
-  };
-
-  afterEach(() => {
-    expect(fetchMock.calls().unmatched).toEqual([]);
-    fetchMock.restore();
-  });
-
   it('should mount', () => {
     const wrapper = shallow(<SendController />);
 
@@ -25,10 +11,7 @@ describe('Send Controller component', () => {
   });
 
   it('should send Data on submit', () => {
-    fetchMock.get('/api/send/String', {
-      status: 200,
-      body: response
-    });
+
 
     const mockGetUserNum = jest.fn();
     const onChange = jest.fn();

@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import MessageConsole from '../MessageConsole/MessageConsole';
 import Header from '../Header/Header';
 import 'whatwg-fetch';
-import socket from '../../assets/sockets.js';
+// import socket from '../../assets/sockets.js';
 import newMessage from '../../AppHelpers/NewMessage.js'
 import { containsSubmit, replaceSubmit } from '../../AppHelpers/ClientHelpers.js'
 import Home from '../Home/Home'
@@ -19,10 +19,10 @@ class App extends Component {
       userNumGlobal: ''
     }
 
-    socket.on('message', (data) => {
-      const newMsg = new newMessage(data)
-      this.handleSend(newMsg)
-    })
+    // socket.on('message', (data) => {
+    //   const newMsg = new newMessage(data)
+    //   this.handleSend(newMsg)
+    // })
 
     this.handleToneClick = this.handleToneClick.bind(this);
     this.getUserNum = this.getUserNum.bind(this);
