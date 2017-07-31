@@ -38,10 +38,33 @@ label {
 .home-page {
   text-align: left;
   width: 800px;
-  background-color: #FFF;
+  background-color: #FDFDFD;
   margin-top: 50px;
   padding: 20px;
   color: #192231;
+  border: 2px solid #494E6B;
+}
+
+#home-txt-logo {
+  background-color: #494E6B;
+  padding: 5px 0 5px 5px;
+  color: #FFF;
+  border-radius: 25px;
+}
+
+#home-smart-logo {
+  background-color: #494E6B;
+  padding: 5px 5px 5px 0;
+  border-radius: 25px;
+
+}
+
+#sample-photo {
+  height: 300px;
+  float:right;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  box-shadow: 5px 2px 2px #192231;
 }
 
 .inline-number {
@@ -81,13 +104,25 @@ a {
 }
 
 /*Message Console Styles*/
+#reminder-txt {
+  height: 5vh;
+  background-color: #192231;
+  color: #FFF;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .message-console {
   width: 600px;
-  height: 90vh;
+  height: 85vh;
   overflow-y: scroll;
-  background-color: white;
-  border-right: 1px solid gray;
+  background-color: #FDFDFD;
+  border-left: 1px solid #494E6B;
+  border-left: 1px solid #494E6B;
+  border-right: 1px solid #494E6B;
+
 }
 
 .message-wrapper {

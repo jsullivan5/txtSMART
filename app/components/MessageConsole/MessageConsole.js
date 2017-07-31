@@ -38,18 +38,22 @@ class MessageConsole extends Component {
   }
 
   render() {
-    if (this.props.userNum.length === 0) {
+    if (this.props.userNum.length === 0 || this.props.messageList.length === 0) {
       return (
-        <div className='message-console'>      
-          <p>Loading</p>
+        <div className='message-console'>
+          <p>We are either loading, or you havn't logged in with your number...</p>
+          <img src='https://media.giphy.com/media/7LeoaJAXokpaM/giphy.gif'/>
         </div>
       )
     }
 
     return (
-      <div className='message-console'>
-        {this.displayMessages(this.props.messageList)}
-        <div ref='scroller'></div>
+      <div>
+        <p id='reminder-txt'>Don't forget to submit texts by starting them with #submit </p>
+        <div className='message-console'>
+          {this.displayMessages(this.props.messageList)}
+          <div ref='scroller'></div>
+        </div>
       </div>
     )
   }
