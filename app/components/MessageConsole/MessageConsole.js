@@ -38,7 +38,6 @@ class MessageConsole extends Component {
   }
 
   render() {
-    console.log(this.props.userNum);
     if (this.props.userNum.length === 0 || this.props.messageList.length === 0) {
       return (
         <div className='message-console'>
