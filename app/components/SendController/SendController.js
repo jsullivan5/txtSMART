@@ -25,7 +25,8 @@ class SendController extends Component {
   }
 
   render() {
-    const placeholderText = 'Area code first. No spaces'
+    const placeholderText = 'Area code first. No spaces';
+    
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor='login'>

@@ -11,8 +11,7 @@ describe('Send Controller component', () => {
     from: '1111111',
     tone: '',
     toneView: false
-  }
-
+  };
 
   afterEach(() => {
     expect(fetchMock.calls().unmatched).toEqual([]);
@@ -23,7 +22,7 @@ describe('Send Controller component', () => {
     const wrapper = shallow(<SendController />);
 
     expect(wrapper.find('form').length).toBe(1);
-  })
+  });
 
   it('should send Data on submit', () => {
     fetchMock.get('/api/send/String', {
@@ -31,20 +30,22 @@ describe('Send Controller component', () => {
       body: response
     });
 
+    const mockGetUserNum = jest.fn();
     const onChange = jest.fn();
-    const wrapper = mount(<SendController onChange={onChange}/>);
-    const form = wrapper.find('form')
-    const input = wrapper.find('textarea')
+    const wrapper = mount(<SendController onChange={onChange} getUserNum={mockGetUserNum} />);
+    const form = wrapper.find('form');
+    const input = wrapper.find('#login');
 
-    expect(wrapper.state('sendText')).toEqual('')
+    expect(wrapper.state('userNumLocal')).toEqual('');
 
-    input.simulate('change', { target: { value: 'String' } })
+    input.simulate('change', { target: { value: 'String' } });
 
-    expect(wrapper.state('sendText')).toEqual('String')
+    expect(wrapper.state('userNumLocal')).toEqual('String');
 
-    form.simulate('submit')
+    form.simulate('submit');
 
-    expect(fetchMock.called()).toEqual(true);
-    expect(fetchMock.lastUrl()).toEqual('/api/send/String');
-  })
+    expect(mockGetUserNum).toHaveBeenCalledTimes(1);
+
+    expect(wrapper.state('userNumLocal')).toEqual('');
+  });
 })
