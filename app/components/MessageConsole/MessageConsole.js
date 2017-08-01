@@ -9,7 +9,7 @@ class MessageConsole extends Component {
 
   componentDidMount() {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
-    
+    console.log(elem);
     if (elem) {
       elem.scrollIntoView(true);
     }
@@ -17,11 +17,21 @@ class MessageConsole extends Component {
 
   componentWillReceiveProps(nextProps) {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
-
-    if (elem) {
+    console.log('props', this.props, nextProps);
+    if (elem && this.props.messageList.length !== nextProps.messageList.length) {
       elem.scrollIntoView(true);
     }
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    debugger
+    const elem = ReactDOM.findDOMNode(this.refs.scroller);
+
+    if (elem && this.props.messageList.length !== prevProps.messageList.length) {
+      elem.scrollIntoView(true);
+    }
+  }
+
 
   displayMessages() {
     const filterMessages = (message) => message.to === this.props.userNum ||
@@ -43,13 +53,13 @@ class MessageConsole extends Component {
       return (
         <div className='message-console'>
           <p>We are either loading, or you havn't logged in with your number...</p>
-          <img src='https://media.giphy.com/media/7LeoaJAXokpaM/giphy.gif'/>
+          <img src='https://media.giphy.com/media/7LeoaJAXokpaM/giphy.gif' id='loader-img'/>
         </div>
       );
     }
 
     return (
-      <div>
+      <div id='console-wrapper'>
         <p id='reminder-txt'>Don't forget to submit texts by starting them with #submit </p>
         <div className='message-console'>
           {this.displayMessages()}
