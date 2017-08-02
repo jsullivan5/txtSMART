@@ -21,7 +21,7 @@ function sendSms(req, res) {
         from: data.from,
         tone: '',
         toneView: false
-      })
+      });
 
     }).catch(function(err) {
       console.error('Could not notify administrator');
@@ -41,11 +41,10 @@ function getHistory(req, res) {
         tone: '',
         toneView: false,
         smsId: message.sid
-
       }
-    })
+    });
 
-    res.status(200).send(messages)
+    res.status(200).send(messages);
   })
 }
 

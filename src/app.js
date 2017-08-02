@@ -5,22 +5,13 @@ var bodyParser = require('body-parser')
 var port = (process.env.PORT || 3000);
 var app = express();
 var router = require('./router');
-var session = require('express-session');
 var twilio = require('twilio');
 var http = require('http');
 var watson = require('./controllerWatson')
 
-
-
-
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(session({ secret: 'anything-you-want-but-keep-secret',
-                  resave: true,
-                  saveUninitialized: true
-                }));
-
 
 if (process.env.NODE_ENV !== 'production') {
   var webpack = require('webpack');
@@ -29,14 +20,12 @@ if (process.env.NODE_ENV !== 'production') {
   var config = require('../webpack.config.js');
   var compiler = webpack(config);
 
-
   app.use(webpackHotMiddleware(compiler));
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath
   }));
 }
-
 
 //WebSockets for Incoming Text
 var server = http.createServer(app)
@@ -47,6 +36,7 @@ var server = http.createServer(app)
 var io = require('socket.io')(server);
 
 app.post("/sms", function (request, response) {
+  console.log(response.body);
   io.sockets.emit('message', request.body);
   watson.getToneServer(request.body, response )
 });
