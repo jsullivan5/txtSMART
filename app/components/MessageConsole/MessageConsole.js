@@ -9,6 +9,7 @@ class MessageConsole extends Component {
 
   componentDidMount() {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
+
     console.log(elem);
     if (elem) {
       elem.scrollIntoView(true);
@@ -17,17 +18,16 @@ class MessageConsole extends Component {
 
   componentWillReceiveProps(nextProps) {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
-    console.log('props', this.props, nextProps);
-    if (elem && this.props.messageList.length !== nextProps.messageList.length) {
+
+    if (elem && this.props.messageList.length < nextProps.messageList.length) {
       elem.scrollIntoView(true);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    debugger
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
 
-    if (elem && this.props.messageList.length !== prevProps.messageList.length) {
+    if (elem && this.props.messageList.length > prevProps.messageList.length) {
       elem.scrollIntoView(true);
     }
   }
@@ -44,7 +44,8 @@ class MessageConsole extends Component {
         return <Message messageData={message}
                         key={index}
                         handleToneClick={this.props.handleToneClick}
-                        location={location.pathname} />
+                        location={location.pathname}
+                        handleDelete={this.props.handleDelete}/>
       });
   }
 

@@ -26,6 +26,7 @@ class App extends Component {
 
     this.handleToneClick = this.handleToneClick.bind(this);
     this.getUserNum = this.getUserNum.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -90,6 +91,18 @@ class App extends Component {
     this.setState({ userNumGlobal: '+1' + number });
   }
 
+  handleDelete(messageData) {
+    fetch(`/api/delete/${messageData.smsId}`, { method: 'DELETE' })
+      .then(response => response.json())
+      .then(responseData => console.log(responseData))
+      .catch(error => console.log(error));
+
+    const filterDeleted = Array.from(this.state.messageList)
+      .filter(message => message.smsId !== messageData.smsId)
+
+    this.setState({messageList: filterDeleted})
+  }
+
   render() {
     const { messageList, userNumGlobal, submittedTexts } = this.state;
 
@@ -101,11 +114,13 @@ class App extends Component {
           <Route path="/messages" render={ ({ location }) =>
             <MessageConsole messageList={messageList}
                             handleToneClick={this.handleToneClick}
-                            userNum={userNumGlobal} /> } />
+                            userNum={userNumGlobal}
+                            handleDelete={this.handleDelete} /> } />
           <Route path="/community" render={({ location }) =>
               <MessageConsole messageList={submittedTexts}
                               handleToneClick={this.handleToneClick}
-                              userNum={'+'} /> } />
+                              userNum={'+'}
+                              handleDelete={this.handleDelete} /> } />
         </section>
       </main>
     );
