@@ -3,11 +3,11 @@
 ## Installation
 
   1. Clone this repo.
-  2. run npm Install.
+  2. run `npm install`
   3. Sign up for a free Twilio SMS number.
     [TwilioSignup](https://www.twilio.com)
 
-  4. Sign up for IBM Bluemix and request to use the Watson API
+  4. Sign up for IBM Bluemix for free and request to use the Watson API
     [Develop With Watson](https://www.ibm.com/watson/developer/)
   5. Create a file in the root directory called credentials.js
 
@@ -17,15 +17,15 @@
 
       var watsonCred = {
         "url": "https://gateway.watsonplatform.net/tone-analyzer/api",
-        "username": {Your Watson username},
-        "password": {Your Watson password}
+        "username": "YOUR_USER_NAME",
+        "password": "YOUR_PASSWORD"
       }
 
       //Twilio Live Credentials
 
-      var sidLive = {Your Twilio SID};
+      var sidLive = "YOUR_TWILIO_SID";
 
-      var liveToken = {Your Twilio Auth Token};
+      var liveToken = "YOUR_TWILIO_AUTH_TOKEN";
 
 
       module.exports = {
@@ -34,7 +34,7 @@
         liveToken: liveToken
       }
 
-  6. Run npm start.
+  6. Run `npm start`
 
 ## Objective
 
@@ -52,7 +52,7 @@ I would also like to add sentiment and personality analytics for entire threads.
 
 ## Challenges
 
-This was my first project that I had to build a back end with.  learning how to coordinate calls between the client side and API took some getting used to.  
+This was my first project that I had to build a back end with.  Learning how to coordinate calls between the client side and API took some getting used to.  
 
 Furthermore, parsing how to use these API's was a challenge in and of itself.  Each had a unique helper library and vast documentation to go through.  
 
