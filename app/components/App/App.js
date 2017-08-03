@@ -8,6 +8,7 @@ import newMessage from '../../AppHelpers/NewMessage.js';
 import { containsSubmit, replaceSubmit } from '../../AppHelpers/ClientHelpers.js';
 import Home from '../Home/Home';
 import { Route } from 'react-router-dom';
+import { getHistory, getTone, deleteMessage } from './fetchHelper'
 
 
 class App extends Component {
@@ -31,13 +32,7 @@ class App extends Component {
 
   componentDidMount() {
     const storage = JSON.parse(localStorage.getItem('submitted'));
-
-    fetch('/api/history')
-      .then(response => response.json())
-      .then(responseData => {
-        this.setState({ messageList: responseData.reverse(), submittedTexts: storage })
-      })
-      .catch(err => console.log(err));
+    getHistory(this, storage)
   }
 
   updateIndivMsg(bool, messageKey, messageData, messages, obj) {
@@ -59,14 +54,7 @@ class App extends Component {
       return
     }
 
-    fetch(`/api/tone/${messageBody}`, {
-      method: 'POST'
-    })
-      .then(response => response.json())
-      .then(responseData => {
-        const tones = { tone: responseData.document_tone.tone_categories[0].tones };
-        this.updateIndivMsg(true, messageKey, messageData, messages, tones);
-      });
+    getTone(this, messageBody, messageKey, messageData, messages)
   }
 
   acceptIncomingText(message) {
@@ -92,13 +80,10 @@ class App extends Component {
   }
 
   handleDelete(messageData) {
-    fetch(`/api/delete/${messageData.smsId}`, { method: 'DELETE' })
-      .then(response => response.json())
-      .then(responseData => console.log(responseData))
-      .catch(error => console.log(error));
-
     const filterDeleted = Array.from(this.state.messageList)
-      .filter(message => message.smsId !== messageData.smsId)
+    .filter(message => message.smsId !== messageData.smsId)
+    
+    deleteMessage(messageData)
 
     this.setState({messageList: filterDeleted})
   }
