@@ -8,7 +8,7 @@ import newMessage from '../../AppHelpers/NewMessage.js';
 import { containsSubmit, replaceSubmit } from '../../AppHelpers/ClientHelpers.js';
 import Home from '../Home/Home';
 import { Route } from 'react-router-dom';
-import { getHistory, getTone, deleteMessage } from './fetchHelper'
+import { getHistory, getTone, deleteMessage } from './fetchHelper';
 
 
 class App extends Component {
@@ -32,7 +32,7 @@ class App extends Component {
 
   componentDidMount() {
     const storage = JSON.parse(localStorage.getItem('submitted'));
-    getHistory(this, storage)
+    getHistory(this, storage);
   }
 
   updateIndivMsg(bool, messageKey, messageData, messages, obj) {
@@ -54,7 +54,7 @@ class App extends Component {
       return
     }
 
-    getTone(this, messageBody, messageKey, messageData, messages)
+    getTone(this, messageBody, messageKey, messageData, messages);
   }
 
   acceptIncomingText(message) {
@@ -81,11 +81,11 @@ class App extends Component {
 
   handleDelete(messageData) {
     const filterDeleted = Array.from(this.state.messageList)
-    .filter(message => message.smsId !== messageData.smsId)
-    
-    deleteMessage(messageData)
+    .filter(message => message.smsId !== messageData.smsId);
 
-    this.setState({messageList: filterDeleted})
+    deleteMessage(messageData);
+
+    this.setState({ messageList: filterDeleted });
   }
 
   render() {
@@ -102,10 +102,10 @@ class App extends Component {
                             userNum={userNumGlobal}
                             handleDelete={this.handleDelete} /> } />
           <Route path="/community" render={({ location }) =>
-              <MessageConsole messageList={submittedTexts}
-                              handleToneClick={this.handleToneClick}
-                              userNum={'+'}
-                              handleDelete={this.handleDelete} /> } />
+            <MessageConsole messageList={submittedTexts}
+                            handleToneClick={this.handleToneClick}
+                            userNum={'+'}
+                            handleDelete={this.handleDelete} /> } />
         </section>
       </main>
     );
