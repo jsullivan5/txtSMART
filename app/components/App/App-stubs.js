@@ -1,7 +1,7 @@
 export class LocalStorageMock {
   constructor() {
     this.store = {
-      submitted: JSON.stringify({key : 'someValue'})
+      submitted: JSON.stringify({ key: 'someValue' }),
     };
   }
 
@@ -20,12 +20,12 @@ export class LocalStorageMock {
   removeItem(key) {
     delete this.store[key];
   }
-};
+}
 
 export const response = {
   body: 'String',
   to: '5555555',
   from: '1111111',
   tone: '',
-  toneView: false
+  toneView: false,
 };
