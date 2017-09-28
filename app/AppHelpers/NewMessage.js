@@ -1,4 +1,4 @@
-class newMessage {
+class NewMessage {
   constructor(data) {
     this.from = data.From;
     this.to = data.To;
@@ -9,4 +9,4 @@ class newMessage {
   }
 }
 
-export default newMessage;
+export default NewMessage;

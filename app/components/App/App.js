@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import { Route } from 'react-router-dom';
+import 'whatwg-fetch';
 import MessageConsole from '../MessageConsole/MessageConsole';
 import Header from '../Header/Header';
-import 'whatwg-fetch';
-import socket from '../../assets/sockets.js';
-import newMessage from '../../AppHelpers/NewMessage.js';
-import { containsSubmit, replaceSubmit } from '../../AppHelpers/ClientHelpers.js';
+import socket from '../../assets/sockets';
+import NewMessage from '../../AppHelpers/NewMessage';
+import { containsSubmit, replaceSubmit } from '../../AppHelpers/ClientHelpers';
 import Home from '../Home/Home';
-import { Route } from 'react-router-dom';
 import { getHistory, getTone, deleteMessage } from './fetchHelper';
 
 
 class App extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       messageList: [],
       submittedTexts: [],
-      userNumGlobal: ''
-    }
+      userNumGlobal: '',
+    };
 
     socket.on('message', (data) => {
-      const newMsg = new newMessage(data);
+      const newMsg = new NewMessage(data);
       this.acceptIncomingText(newMsg);
     });
 
@@ -36,7 +35,7 @@ class App extends Component {
   }
 
   updateIndivMsg(bool, messageKey, messageData, messages, obj) {
-    const newData = Object.assign({}, messageData, obj , {toneView: bool});
+    const newData = Object.assign({}, messageData, obj, { toneView: bool });
     const msgArray = Array.from(messages);
     const newIndex = msgArray.indexOf(messageData);
     msgArray[newIndex] = newData;
@@ -51,7 +50,7 @@ class App extends Component {
 
     if (messageData.toneView === true) {
       this.updateIndivMsg(false, messageKey, messageData, messages, null);
-      return
+      return;
     }
 
     getTone(this, messageBody, messageKey, messageData, messages);
@@ -62,26 +61,26 @@ class App extends Component {
     const newMsgObj = Object.assign({}, message, { id: currentState.length + 1 });
     const newState = Array.from(currentState);
 
-    if(containsSubmit(message.body)) {
+    if (containsSubmit(message.body)) {
       const cleanedMessage = replaceSubmit(message);
       const newSubmits = Array.from(this.state.submittedTexts);
 
       newSubmits.push(cleanedMessage);
-      this.setState({submittedTexts: newSubmits});
+      this.setState({ submittedTexts: newSubmits });
       localStorage.setItem('submitted', JSON.stringify(newSubmits));
     }
 
     newState.push(newMsgObj);
-    this.setState({messageList: newState});
+    this.setState({ messageList: newState });
   }
 
   getUserNum(number) {
-    this.setState({ userNumGlobal: '+1' + number });
+    this.setState({ userNumGlobal: `+1${number}` });
   }
 
   handleDelete(messageData) {
     const filterDeleted = Array.from(this.state.messageList)
-    .filter(message => message.smsId !== messageData.smsId);
+      .filter(message => message.smsId !== messageData.smsId);
 
     deleteMessage(messageData);
 
@@ -96,16 +95,26 @@ class App extends Component {
         <Header getUserNum={this.getUserNum} />
         <section>
           <Route exact path={'/'} component={Home} />
-          <Route path="/messages" render={ ({ location }) =>
-            <MessageConsole messageList={messageList}
-                            handleToneClick={this.handleToneClick}
-                            userNum={userNumGlobal}
-                            handleDelete={this.handleDelete} /> } />
-          <Route path="/community" render={({ location }) =>
-            <MessageConsole messageList={submittedTexts}
-                            handleToneClick={this.handleToneClick}
-                            userNum={'+'}
-                            handleDelete={this.handleDelete} /> } />
+          <Route
+            path="/messages"
+            render={({ location }) =>
+              (<MessageConsole
+                messageList={messageList}
+                handleToneClick={this.handleToneClick}
+                userNum={userNumGlobal}
+                handleDelete={this.handleDelete}
+              />)}
+          />
+          <Route
+            path="/community"
+            render={({ location }) =>
+              (<MessageConsole
+                messageList={submittedTexts}
+                handleToneClick={this.handleToneClick}
+                userNum={'+'}
+                handleDelete={this.handleDelete}
+              />)}
+          />
         </section>
       </main>
     );
