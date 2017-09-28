@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const storage = JSON.parse(localStorage.getItem('submitted'));
+    const storage = JSON.parse(localStorage.getItem('submitted')) || {};
     getHistory(this, storage);
   }
 
