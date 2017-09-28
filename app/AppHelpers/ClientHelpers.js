@@ -1,8 +1,11 @@
 export const containsSubmit = (string) => {
-  return string.toLowerCase().indexOf('#submit') !== -1 ? true : false
-}
+  if (string.toLowerCase().indexOf('#submit') !== -1) {
+    return true;
+  }
+  return false;
+};
 
 export const replaceSubmit = (message) => {
- const newBody = message.body.replace(/#submit/i, '');
- return Object.assign(message, {body: newBody})
-}
+  const newBody = message.body.replace(/#submit/i, '');
+  return Object.assign(message, { body: newBody });
+};
