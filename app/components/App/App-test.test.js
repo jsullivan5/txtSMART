@@ -1,19 +1,14 @@
-import React from 'react';
+/* eslint-disable */
 import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
-import App from './App';
+import React from 'react';
 import { StaticRouter } from 'react-router';
+import { shallow, mount } from 'enzyme';
 import fetchMock from 'fetch-mock';
+import App from './App';
 import { LocalStorageMock } from './App-stubs';
 
-// fetchMock.get('/api/send/String', {
-//   status: 200,
-//   body: response
-// });
-
 describe('App component', () => {
-
-global.localStorage = new LocalStorageMock;
+  global.localStorage = new LocalStorageMock();
 
   afterEach(() => {
     expect(fetchMock.calls().unmatched).toEqual([]);
@@ -24,21 +19,17 @@ global.localStorage = new LocalStorageMock;
     const wrapper = shallow(<App />);
 
     expect(wrapper.find('main').length).toBe(1);
-  })
+  });
 
   it('should be fully integrated', () => {
     const wrapper = mount(
       <StaticRouter>
         <App />
-      </StaticRouter>
-    )
+      </StaticRouter>,
+    );
 
-    const messageNavLink = wrapper.find('nav').childAt(1)
+    const messageNavLink = wrapper.find('nav').childAt(1);
 
-    messageNavLink.simulate('click')
-
-    console.log(wrapper.debug());
-
-
-  })
-})
+    messageNavLink.simulate('click');
+  });
+});
