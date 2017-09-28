@@ -7,6 +7,8 @@ import fetchMock from 'fetch-mock';
 import App from './App';
 import { LocalStorageMock } from './App-stubs';
 
+// TODO: finish integration testing on app
+
 describe('App component', () => {
   global.localStorage = new LocalStorageMock();
 
