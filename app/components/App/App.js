@@ -1,3 +1,4 @@
+/* global localStorage */
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import 'whatwg-fetch';
@@ -32,6 +33,10 @@ class App extends Component {
   componentDidMount() {
     const storage = JSON.parse(localStorage.getItem('submitted'));
     getHistory(this, storage);
+  }
+
+  getUserNum(number) {
+    this.setState({ userNumGlobal: `+1${number}` });
   }
 
   updateIndivMsg(bool, messageKey, messageData, messages, obj) {
@@ -74,10 +79,6 @@ class App extends Component {
     this.setState({ messageList: newState });
   }
 
-  getUserNum(number) {
-    this.setState({ userNumGlobal: `+1${number}` });
-  }
-
   handleDelete(messageData) {
     const filterDeleted = Array.from(this.state.messageList)
       .filter(message => message.smsId !== messageData.smsId);
@@ -97,7 +98,7 @@ class App extends Component {
           <Route exact path={'/'} component={Home} />
           <Route
             path="/messages"
-            render={({ location }) =>
+            render={() =>
               (<MessageConsole
                 messageList={messageList}
                 handleToneClick={this.handleToneClick}
@@ -107,7 +108,7 @@ class App extends Component {
           />
           <Route
             path="/community"
-            render={({ location }) =>
+            render={() =>
               (<MessageConsole
                 messageList={submittedTexts}
                 handleToneClick={this.handleToneClick}
