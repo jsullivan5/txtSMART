@@ -10,7 +10,6 @@ class MessageConsole extends Component {
   componentDidMount() {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
 
-    console.log(elem);
     if (elem) {
       elem.scrollIntoView(true);
     }
@@ -27,10 +26,12 @@ class MessageConsole extends Component {
   componentDidUpdate(prevProps, prevState) {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
 
-    if (elem && this.props.messageList.length > prevProps.messageList.length) {
+    if (elem && this.props.messageList.length > prevProps.messageList.length || this.props.userNum.length > prevProps.userNum.length) {
       elem.scrollIntoView(true);
     }
   }
+
+
 
 
   displayMessages() {
@@ -45,7 +46,7 @@ class MessageConsole extends Component {
                         key={index}
                         handleToneClick={this.props.handleToneClick}
                         location={location.pathname}
-                        handleDelete={this.props.handleDelete}/>
+                        handleDelete={this.props.handleDelete} />
       });
   }
 
@@ -53,7 +54,7 @@ class MessageConsole extends Component {
     if (this.props.userNum.length === 0 || this.props.messageList.length === 0) {
       return (
         <div className='message-console'>
-          <p>We are either loading, or you havn't logged in with your number...</p>
+          <p>We are either loading, or you haven't logged in with your number...</p>
           <img src='https://media.giphy.com/media/7LeoaJAXokpaM/giphy.gif' id='loader-img'/>
         </div>
       );

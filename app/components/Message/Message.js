@@ -17,11 +17,11 @@ const Message = ({ messageData, handleToneClick, handleDelete }) => {
     toneBtnTxt = 'Hide Tone'
   }
 
-
+  const communityClass = location.pathname === '/community' ? 'community' : '';
 
   return (
     <div className='message-wrapper'>
-      <div className={messageClassName}>
+      <div className={`${messageClassName} ${communityClass}`}>
         <p>{messageData.body}</p>
         {toneData || null}
         <button onClick={(e) => handleToneClick(messageData, location.pathname)}>

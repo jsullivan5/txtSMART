@@ -36,7 +36,6 @@ var server = http.createServer(app)
 var io = require('socket.io')(server);
 
 app.post("/sms", function (request, response) {
-  console.log(response.body);
   io.sockets.emit('message', request.body);
   watson.getToneServer(request.body, response )
 });
