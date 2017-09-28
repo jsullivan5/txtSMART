@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import Message from '../Message/Message';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import Message from '../Message/Message';
+/* eslint react/no-find-dom-node: 0 */
+/* eslint react/no-string-refs: 0 */
 
 class MessageConsole extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
-
     if (elem) {
       elem.scrollIntoView(true);
     }
@@ -17,7 +15,6 @@ class MessageConsole extends Component {
 
   componentWillReceiveProps(nextProps) {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
-
     if (elem && this.props.messageList.length < nextProps.messageList.length) {
       elem.scrollIntoView(true);
     }
@@ -50,6 +47,7 @@ class MessageConsole extends Component {
   }
 
   render() {
+    console.log(this.props.messageList);
     if (this.props.userNum.length === 0 || this.props.messageList.length === 0) {
       return (
         <div className="message-console">
@@ -71,4 +69,8 @@ class MessageConsole extends Component {
   }
 }
 
+/* eslint react/forbid-prop-types: 0 */
+MessageConsole.propTypes = {
+  messageList: PropTypes.array.isRequired,
+};
 export default MessageConsole;

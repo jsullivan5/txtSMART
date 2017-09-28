@@ -24,11 +24,11 @@ const Message = ({ messageData, handleToneClick, handleDelete }) => {
       <div className={`${messageClassName} ${communityClass}`}>
         <p>{messageData.body}</p>
         {toneData || null}
-        <button onClick={e => handleToneClick(messageData, location.pathname)}>
+        <button onClick={() => handleToneClick(messageData, location.pathname)}>
           {toneBtnTxt}
         </button>
         { location.pathname === '/messages' ?
-          <button onClick={e => handleDelete(messageData)}>Delete</button> :
+          <button onClick={() => handleDelete(messageData)}>Delete</button> :
           null }
       </div>
     </div>
