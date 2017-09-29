@@ -9,7 +9,10 @@
       "react/jsx-no-literals": [0],
       "react/no-set-state": [0],
       "react/jsx-handler-names": [0],
-      "react/require-optimization": [0]
+      "react/require-optimization": [0],
+      "react/no-find-dom-node": [0],
+      "react/no-string-refs": [0],
+      "no-mixed-operators": [0]
     },
     "globals": {
       "io": true,
