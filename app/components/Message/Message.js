@@ -1,4 +1,3 @@
-/* global location */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -36,6 +35,8 @@ const Message = ({ messageData, handleToneClick, handleDelete }) => {
 };
 
 Message.propTypes = {
+  handleDelete: PropTypes.func.isRequired,
+  handleToneClick: PropTypes.func.isRequired,
   messageData: PropTypes.shape({
     body: PropTypes.string,
     from: PropTypes.string,
@@ -46,8 +47,6 @@ Message.propTypes = {
     ]),
     toneView: PropTypes.bool,
   }).isRequired,
-  handleToneClick: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
 };
 
 export default Message;
