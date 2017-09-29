@@ -3,7 +3,7 @@ body {
   font-family: sans-serif;
   font-weight: 100;
   margin: 0;
-  box-sizing: border-box;
+
 }
 
 #main h1 {
@@ -11,6 +11,7 @@ body {
   font-weight: bold;
   font-family: sans-serif;
   margin: 0;
+  margin-left: 20px;
 }
 
 span {
@@ -19,8 +20,9 @@ span {
 
 .tag-line {
   color: #FFF;
-  margin: 0;
   font-size: .5em;
+  margin: 0;
+  margin-left: 20px;
 }
 
 .tag-line span {
@@ -28,44 +30,57 @@ span {
 }
 
 label {
-  display: block;
   color: #FFF;
+  display: block;
 }
 
 #login-submit {
+  background-color: #98878F;
+  color: #FFF;
+  text-decoration: none;
   width: 50px;
 }
 
+button {
+  background-color: #DFDCE3;
+  border: 1px solid #494E6B;
+  border-radius: 25px;
+  color: #192231;
+  margin: 0 10px;
+  outline: none;
+  text-decoration: none;
+}
+
 .home-page {
-  text-align: left;
-  width: 800px;
   background-color: #FDFDFD;
+  border: 2px solid #494E6B;
+  color: #192231;
   margin-top: 50px;
   padding: 20px;
-  color: #192231;
-  border: 2px solid #494E6B;
+  text-align: left;
+  width: 800px;
 }
 
 #home-txt-logo {
   background-color: #494E6B;
-  padding: 5px 0 5px 5px;
-  color: #FFF;
   border-radius: 25px;
+  color: #FFF;
+  padding: 5px 0 5px 5px;
 }
 
 #home-smart-logo {
   background-color: #494E6B;
-  padding: 5px 5px 5px 0;
   border-radius: 25px;
+  padding: 5px 5px 5px 0;
 
 }
 
 #sample-photo {
-  height: 300px;
+  box-shadow: 5px 2px 2px #192231;
   float:right;
+  height: 300px;
   margin-left: 20px;
   margin-bottom: 20px;
-  box-shadow: 5px 2px 2px #192231;
 }
 
 .inline-number {
@@ -73,55 +88,54 @@ label {
 }
 
 section {
-  text-align: center;
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 /*Header Styles*/
 
 header {
+  align-items: center;
+  background-color: #494E6B;
   display: flex;
   height: 10vh;
   justify-content: space-between;
-  align-items: center;
-  background-color: #494E6B;
   width: 100%
 }
 
 a {
-  margin: 10px;
-  text-decoration: none;
   background-color: #98878F;
-  padding: 10px;
-  color: #FFF;
   border-radius: 25px;
+  color: #FFF;
+  margin: 10px;
+  padding: 10px;
+  text-decoration: none;
 }
 
 .selected {
-  color: #192231;
   border: 3px solid #DFDCE3;
+  color: #192231;
 }
 
 /*Message Console Styles*/
 #reminder-txt {
-  height: 5vh;
+  align-items: center;
   background-color: #192231;
   color: #FFF;
-  margin: 0;
   display: flex;
-  align-items: center;
+  height: 5vh;
   justify-content: center;
+  margin: 0;
 }
 
 .message-console {
-  width: 600px;
-  height: 85vh;
-  overflow-y: scroll;
   background-color: #FDFDFD;
   border-left: 1px solid #494E6B;
-  border-left: 1px solid #494E6B;
   border-right: 1px solid #494E6B;
+  height: 85vh;
+  overflow-y: scroll;
+  width: 600px;
 
 }
 
@@ -132,23 +146,29 @@ a {
 }
 
 .send {
-  background-color: blue;
-  color: white;
-  width: 250px;
   align-self: flex-end;
-  padding: 15px;
+  background-color: blue;
   border-radius: 10%;
+  color: white;
+  padding: 15px;
+  width: 250px;
 }
 
 .receive {
-  background-color: lightgray;
-  width: 250px;
   align-self: flex-start;
-  padding: 15px;
+  background-color: lightgray;
   border-radius: 10%;
+  padding: 15px;
+  width: 250px;
 }
 
-
+.community {
+  width: 80%;
+  background-color: lightgray;
+  border-radius: 10%;
+  padding: 15px;
+  align-self: center;
+}
 
 /* Send Controller Styles */
 
@@ -170,9 +190,17 @@ input {
 @media screen and (max-width: 1050px) {
   header {
     flex-direction: column;
-    padding: 10px 0;
     height: 20vh;
+    padding: 10px 0;
     text-align: center;
+  }
+
+  header h1 {
+    margin: 0;
+  }
+
+  .tag-line {
+    margin: 0;
   }
 
   form {
@@ -209,8 +237,8 @@ input {
     width: 100%;
   }
   .message-console {
-    width: 100%;
     height: 58vh;
+    width: 100%;
   }
 
   nav {
@@ -227,7 +255,7 @@ input {
   }
 
   #sample-photo{
-  display: none;}
+    display: none;}
 }
 
 @media screen and (max-width: 400px) {

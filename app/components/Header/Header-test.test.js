@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
@@ -9,9 +11,9 @@ describe('Header component', () => {
   const wrapper = shallow(<Header getUserNum={mockGetUserNum} />);
 
   it('should mount', () => {
-    expect(wrapper.find('header').length).toBe(1)
+    expect(wrapper.find('header').length).toBe(1);
   });
   it('should mount Login', () => {
     expect(wrapper.find(Login).length).toBe(1);
   });
-})
+});
