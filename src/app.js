@@ -1,51 +1,53 @@
-var path = require('path');
-var express = require('express');
-var cors = require('express-cors');
-var bodyParser = require('body-parser')
-var port = (process.env.PORT || 3000);
-var app = express();
-var router = require('./router');
-var twilio = require('twilio');
-var http = require('http');
-var watson = require('./controllerWatson')
+/* eslint global-require: 0 */
+/* eslint import/no-extraneous-dependencies: 0 */
+const path = require('path');
+const express = require('express');
+const cors = require('express-cors');
+const bodyParser = require('body-parser');
+
+const port = (process.env.PORT || 3000);
+const app = express();
+const router = require('./router');
+const http = require('http');
+const watson = require('./controllerWatson');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV !== 'production') {
-  var webpack = require('webpack');
-  var webpackDevMiddleware = require('webpack-dev-middleware');
-  var webpackHotMiddleware = require('webpack-hot-middleware');
-  var config = require('../webpack.config.js');
-  var compiler = webpack(config);
+  const webpack = require('webpack');
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const config = require('../webpack.config.js');
+  const compiler = webpack(config);
 
   app.use(webpackHotMiddleware(compiler));
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
-    publicPath: config.output.publicPath
+    publicPath: config.output.publicPath,
   }));
 }
 
-//WebSockets for Incoming Text
-var server = http.createServer(app)
-                 .listen(port, () => {
-                    console.log(`Listening on port ${port}.`);
-                  });
+// WebSockets for Incoming Text
+const server = http.createServer(app)
+  .listen(port, () => {
+    console.log(`Listening on port ${port}.`);
+  });
 
-var io = require('socket.io')(server);
+const io = require('socket.io')(server);
 
-app.post("/sms", function (request, response) {
+app.post('/sms', (request, response) => {
   io.sockets.emit('message', request.body);
-  watson.getToneServer(request.body, response )
+  watson.getToneServer(request.body, response);
 });
 
 app.use('/assets', express.static(path.join(__dirname, '../app/assets')));
 
-app.get('/', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
+app.get('/', (req, res) => { res.sendFile(path.join(__dirname, '/../index.html')); });
 
 app.use('/api', router);
-app.get('/*', function (req, res) { res.sendFile(path.join(__dirname, '/../index.html')) });
+app.get('/*', (req, res) => { res.sendFile(path.join(__dirname, '/../index.html')); });
 
 
 console.log(`Listening at http://localhost:${port}`);

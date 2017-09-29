@@ -2,6 +2,7 @@
   "name": "example-api",
   "version": "1.0.0",
   "description": "txtSMART",
+  "eslintIgnore": ["webpack.config.js"],
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
@@ -33,6 +34,7 @@
     "request": "^2.81.0",
     "socket.io": "^2.0.3",
     "twilio": "^3.5.0",
+    "watson-developer-cloud": "^2.39.0",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

@@ -1,65 +1,59 @@
-var credentials = require('../credentials.js');
-var helpers = require('./responseHelper.js');
-
-
+/* eslint global-require: 0 */
+const credentials = require('../credentials.js');
+const helpers = require('./responseHelper.js');
 
 function getTone(req, res) {
-  var requestBody = req.params.content;
-  console.log(requestBody);
-  var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+  const requestBody = req.params.content;
+  const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
-  var tone_analyzer = new ToneAnalyzerV3({
+  const toneAnalyzer = new ToneAnalyzerV3({
     username: credentials.watsonCred.username,
     password: credentials.watsonCred.password,
-    version_date: '2017-07-01'
+    version_date: '2017-07-01',
   });
 
-  var params = {
+  const params = {
     text: requestBody,
-    tones: 'emotion'
+    tones: 'emotion',
   };
 
-  tone_analyzer.tone(params, function(error, response) {
+  toneAnalyzer.tone(params, (error, response) => {
     if (error) {
       console.log('error:', error);
-      res.status(500).send(error)
-    }
-    else {
+      res.status(500).send(error);
+    } else {
       console.log(JSON.stringify(response, null, 2));
-      res.status(200).send(response)
+      res.status(200).send(response);
     }
   });
 }
 
 function getToneServer(text, res) {
-  console.log(text );
-  var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+  const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
-  var tone_analyzer = new ToneAnalyzerV3({
+  const toneAnalyzer = new ToneAnalyzerV3({
     username: credentials.watsonCred.username,
     password: credentials.watsonCred.password,
-    version_date: '2017-07-01'
+    version_date: '2017-07-01',
   });
 
-  var params = {
+  const params = {
     text: text.Body,
-    tones: 'emotion'
+    tones: 'emotion',
   };
 
-  tone_analyzer.tone(params, function(error, response) {
+  toneAnalyzer.tone(params, (error, response) => {
     if (error) {
       console.log('error:', error);
-      res.status(500).send(error)
-    }
-    else {
-
+      res.status(500).send(error);
+    } else {
       // console.log(JSON.stringify(response, null, 2));
-      var toneArray = response.document_tone.tone_categories[0].tones
+      const toneArray = response.document_tone.tone_categories[0].tones;
 
       console.log(toneArray);
 
-      var introText = helpers.getIntroText(toneArray)
-      var tones = helpers.formatArray(toneArray)
+      const introText = helpers.getIntroText(toneArray);
+      const tones = helpers.formatArray(toneArray);
 
       res.status(200).send(`
         <Response>
@@ -74,12 +68,12 @@ function getToneServer(text, res) {
 
           For more insights, go to http://example.com
           </Message>
-        </Response>`)
+        </Response>`);
     }
   });
 }
 
 module.exports = {
-  getTone: getTone,
-  getToneServer: getToneServer
-}
+  getTone,
+  getToneServer,
+};
