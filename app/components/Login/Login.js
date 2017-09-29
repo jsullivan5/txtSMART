@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
+import PropTypes from 'prop-types';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userNumLocal: ''
-    }
+      userNumLocal: '',
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,20 +30,28 @@ class Login extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor='login'>
+        <label htmlFor="login">
           Login with your phone #:
         </label>
-        <input type='number'
-               id='login'
-               value={this.state.userNumLocal}
-               onChange={this.handleChange}
-               placeholder={placeholderText} />
-        <input type="submit"
-               value="Login"
-               id='login-submit' />
+        <input
+          type="number"
+          id="login"
+          value={this.state.userNumLocal}
+          onChange={this.handleChange}
+          placeholder={placeholderText}
+        />
+        <input
+          type="submit"
+          value="Login"
+          id="login-submit"
+        />
       </form>
     );
   }
 }
+
+Login.propTypes = {
+  getUserNum: PropTypes.func.isRequired,
+};
 
 export default Login;
