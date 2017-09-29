@@ -28,7 +28,6 @@ class MessageConsole extends Component {
     }
   }
 
-
   displayMessages() {
     const filterMessages = message => message.to === this.props.userNum ||
       message.from === this.props.userNum;
