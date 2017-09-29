@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { StaticRouter } from 'react-router';
@@ -16,13 +16,11 @@ describe('App component', () => {
     expect(fetchMock.calls().unmatched).toEqual([]);
     fetchMock.restore();
   });
-
   it('should mount', () => {
     const wrapper = shallow(<App />);
 
     expect(wrapper.find('main').length).toBe(1);
   });
-
   it('should be fully integrated', () => {
     const wrapper = mount(
       <StaticRouter>
@@ -31,7 +29,6 @@ describe('App component', () => {
     );
 
     const messageNavLink = wrapper.find('nav').childAt(1);
-
     messageNavLink.simulate('click');
   });
 });

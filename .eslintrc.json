@@ -1,12 +1,20 @@
 {
-    "extends": "airbnb",
+    "extends": ["airbnb", "plugin:react/all"],
     "env": {
       "browser": true
     },
+    "plugins": ["eslint-plugin-react"], 
     "rules": {
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+      // "react/jsx-no-literals": [0]
     },
     "globals": {
-      "io": true
+      "io": true,
+      "ReactDOM": true,
+      "describe": true,
+      "afterEach": true,
+      "expect": true,
+      "it": true,
+      "jest": true
     }
 }
