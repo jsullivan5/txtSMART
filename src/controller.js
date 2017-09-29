@@ -1,18 +1,19 @@
-var request = require('request')
-var twilio = require('twilio');
-var credentials = require('../credentials.js');
-var http = require('http');
+/* eslint global-require: 0 */
+const request = require('request');
+const twilio = require('twilio');
+const credentials = require('../credentials.js');
+const http = require('http');
 
 function sendSms(req, res) {
-  var messageContent = req.params.content
-  var client = require('twilio')(credentials.sidLive, credentials.liveToken);
+  const messageContent = req.params.content;
+  const client = require('twilio')(credentials.sidLive, credentials.liveToken);
 
   client.api.messages
     .create({
       body: messageContent,
       to: '+12146210523',
       from: '+18178732313',
-    }).then(function(data) {
+    }).then((data) => {
       console.log('Administrator notified');
 
       res.status(200).send({
@@ -20,35 +21,32 @@ function sendSms(req, res) {
         to: data.to,
         from: data.from,
         tone: '',
-        toneView: false
+        toneView: false,
       });
-
-    }).catch(function(err) {
+    }).catch((err) => {
       console.error('Could not notify administrator');
       console.error(err);
     });
 }
 
 function getHistory(req, res) {
-  var client = require('twilio')(credentials.sidLive, credentials.liveToken);
+  const client = require('twilio')(credentials.sidLive, credentials.liveToken);
   client.messages.list().then((data) => {
-    var messages =  data.map(function(message, index, array) {
-      return {
-        id: array.length - index,
-        body: message.body,
-        to: message.to,
-        from: message.from,
-        tone: '',
-        toneView: false,
-        smsId: message.sid
-      }
-    });
+    const messages = data.map((message, index, array) => ({
+      id: array.length - index,
+      body: message.body,
+      to: message.to,
+      from: message.from,
+      tone: '',
+      toneView: false,
+      smsId: message.sid,
+    }));
 
     res.status(200).send(messages);
-  })
+  });
 }
 
 module.exports = {
-  sendSms: sendSms,
-  getHistory: getHistory
+  sendSms,
+  getHistory,
 };
