@@ -7,6 +7,8 @@ import Message from '../Message/Message';
 /* eslint react/no-string-refs: 0 */
 /* eslint no-mixed-operators: 0 */
 
+// TODO: find better linter fixes
+
 class MessageConsole extends Component {
   componentDidMount() {
     const elem = ReactDOM.findDOMNode(this.refs.scroller);
