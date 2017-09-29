@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var controller = require('./controller');
-var Watson = require('./controllerWatson');
-var controllerDelete = require('./controllerDelete');
-var http = require('http');
+const express = require('express');
+const controller = require('./controller');
+const Watson = require('./controllerWatson');
+const controllerDelete = require('./controllerDelete');
+
+const router = express.Router();
 
 router.post('/tone/:content', Watson.getTone);
 router.get('/send/:content', controller.sendSms);
