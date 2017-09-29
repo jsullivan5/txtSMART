@@ -1,4 +1,3 @@
-/* global fetch */
 /* eslint no-console: 0 */
 
 export const getHistory = (component, localStorage) => {
