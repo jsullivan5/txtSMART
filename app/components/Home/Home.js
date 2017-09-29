@@ -5,9 +5,8 @@ const Home = () => (
     <img id="sample-photo" src="./assets/txtSMARTPhoto.jpg" alt="sample text" />
     <h2 className="home-welcome">
         Welcome to
-      <span id="home-txt-logo">txt<span id="home-smart-logo">
-          SMART</span>
-      </span>!</h2>
+      <span id="home-txt-logo">txt<span id="home-smart-logo">SMART</span></span>!
+    </h2>
     <p>Texting can be hard.  {'"What did he mean by that?" "What is she trying to say??"'}</p>
     <h4>Fortunately, we have got your back.</h4>
     <p>Text us anytime at
