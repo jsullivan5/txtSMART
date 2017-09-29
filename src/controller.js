@@ -1,8 +1,5 @@
 /* eslint global-require: 0 */
-const request = require('request');
-const twilio = require('twilio');
 const credentials = require('../credentials.js');
-const http = require('http');
 
 function sendSms(req, res) {
   const messageContent = req.params.content;
@@ -24,8 +21,7 @@ function sendSms(req, res) {
         toneView: false,
       });
     }).catch((err) => {
-      console.error('Could not notify administrator');
-      console.error(err);
+      console.error('Could not notify administrator', err);
     });
 }
 
