@@ -1,6 +1,4 @@
-/* eslint-disable */
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import Login from './Login';
 
@@ -10,10 +8,7 @@ describe('Login component', () => {
 
     expect(wrapper.find('form').length).toBe(1);
   });
-
   it('should send Data on submit', () => {
-
-
     const mockGetUserNum = jest.fn();
     const onChange = jest.fn();
     const wrapper = mount(<Login onChange={onChange} getUserNum={mockGetUserNum} />);
@@ -32,4 +27,4 @@ describe('Login component', () => {
 
     expect(wrapper.state('userNumLocal')).toEqual('');
   });
-})
+});
