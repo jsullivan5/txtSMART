@@ -2,6 +2,7 @@
   "name": "example-api",
   "version": "1.0.0",
   "description": "txtSMART",
+  "eslintIgnore": ["webpack.config.js"],
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
