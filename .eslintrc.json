@@ -5,8 +5,10 @@
     },
     "plugins": ["eslint-plugin-react"], 
     "rules": {
-      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
-      // "react/jsx-no-literals": [0]
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "react/jsx-no-literals": [0],
+      "react/no-set-state": [0],
+      "react/jsx-handler-names": [0]
     },
     "globals": {
       "io": true,
