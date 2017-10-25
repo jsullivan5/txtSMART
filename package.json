@@ -2,7 +2,9 @@
   "name": "example-api",
   "version": "1.0.0",
   "description": "txtSMART",
-  "eslintIgnore": ["webpack.config.js"],
+  "eslintIgnore": [
+    "webpack.config.js"
+  ],
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
     "dev-server": "webpack-dev-server --hot --inline --content-base --history-api-fallback",
@@ -21,7 +23,9 @@
     "express-session": "^1.15.4",
     "history": "^4.6.3",
     "jest": "^20.0.4",
+    "knex": "^0.13.0",
     "nodemon": "^1.11.0",
+    "pg": "^7.3.0",
     "prop-types": "^15.6.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
