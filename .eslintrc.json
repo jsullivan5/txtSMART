@@ -1,6 +1,26 @@
 {
-    "extends": "airbnb",
+    "extends": ["airbnb", "plugin:react/all"],
+    "env": {
+      "browser": true
+    },
+    "plugins": ["eslint-plugin-react"], 
     "rules": {
-      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "react/jsx-no-literals": [0],
+      "react/no-set-state": [0],
+      "react/jsx-handler-names": [0],
+      "react/require-optimization": [0],
+      "react/no-find-dom-node": [0],
+      "react/no-string-refs": [0],
+      "no-mixed-operators": [0]
+    },
+    "globals": {
+      "io": true,
+      "ReactDOM": true,
+      "describe": true,
+      "afterEach": true,
+      "expect": true,
+      "it": true,
+      "jest": true
     }
 }

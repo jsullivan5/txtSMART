@@ -95,7 +95,7 @@ class App extends Component {
       <main>
         <Header getUserNum={this.getUserNum} />
         <section>
-          <Route exact path={'/'} component={Home} />
+          <Route exact path="/" component={Home} />
           <Route
             path="/messages"
             render={() =>
@@ -112,7 +112,7 @@ class App extends Component {
               (<MessageConsole
                 messageList={submittedTexts}
                 handleToneClick={this.handleToneClick}
-                userNum={'+'}
+                userNum="+"
                 handleDelete={this.handleDelete}
               />)}
           />

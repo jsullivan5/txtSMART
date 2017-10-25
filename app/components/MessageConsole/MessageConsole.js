@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Message from '../Message/Message';
-/* global location */
-/* eslint react/no-find-dom-node: 0 */
-/* eslint react/no-string-refs: 0 */
-/* eslint no-mixed-operators: 0 */
-
-// TODO: find better linter fixes
 
 class MessageConsole extends Component {
   componentDidMount() {
@@ -34,7 +28,6 @@ class MessageConsole extends Component {
     }
   }
 
-
   displayMessages() {
     const filterMessages = message => message.to === this.props.userNum ||
       message.from === this.props.userNum;
@@ -45,8 +38,8 @@ class MessageConsole extends Component {
     if (this.props.messageList.length) {
       return this.props.messageList.filter(filterCallback)
         .map(message => (<Message
-          messageData={message}
           key={Math.random()}
+          messageData={message}
           handleToneClick={this.props.handleToneClick}
           location={location.pathname}
           handleDelete={this.props.handleDelete}
@@ -67,7 +60,7 @@ class MessageConsole extends Component {
 
     return (
       <div id="console-wrapper">
-        <p id="reminder-txt">{"Don't forget to submit texts by starting them with #submit"}</p>
+        <p id="reminder-txt">Do not forget to submit texts by starting them with #submit</p>
         <div className="message-console">
           {this.displayMessages()}
           <div ref="scroller" />
@@ -79,13 +72,13 @@ class MessageConsole extends Component {
 
 /* eslint react/forbid-prop-types: 0 */
 MessageConsole.propTypes = {
+  handleDelete: PropTypes.func.isRequired,
+  handleToneClick: PropTypes.func.isRequired,
   messageList: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
   ]).isRequired,
   userNum: PropTypes.string.isRequired,
-  handleToneClick: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
 };
 
 export default MessageConsole;
