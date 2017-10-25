@@ -1,4 +1,5 @@
 // Update with your config settings.
+/* eslint-disable */
 
 module.exports = {
 
@@ -7,6 +8,9 @@ module.exports = {
     connection: 'postgres://localhost/txt_smart',
     migrations: {
       directory: './db/migrations'
+    },
+    seeds: {
+      directory: './db/seeds/dev'
     },
     useNullAsDefault: true
   },
