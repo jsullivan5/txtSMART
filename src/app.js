@@ -51,7 +51,4 @@ app.get('/', (req, res) => { res.sendFile(path.join(__dirname, '/../index.html')
 app.use('/api', router);
 app.get('/*', (req, res) => { res.sendFile(path.join(__dirname, '/../index.html')); });
 
-
-console.log(`Listening at http://localhost:${port}`);
-
 module.exports = server;
