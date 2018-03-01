@@ -1,5 +1,7 @@
 /* eslint global-require: 0 */
 /* eslint import/no-extraneous-dependencies: 0 */
+require('dotenv');
+
 const path = require('path');
 const express = require('express');
 const cors = require('express-cors');
