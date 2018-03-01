@@ -1,8 +1,21 @@
 # txtSmart
 
+## Prerequisites
+
+```
+npm
+```
+
+```
+git
+```
+```
+Twilio and IBM Watson credentials
+```
+
 ## Installation
 
-  1. Clone this repo.
+  1. Clone this repo. `git clone git@github.com:jsullivan5/txtSMART.git`
   2. run `npm install`
   3. Sign up for a free Twilio SMS number.
     [TwilioSignup](https://www.twilio.com)
@@ -56,4 +69,8 @@ This was my first project that I had to build a back end with.  Learning how to 
 
 Furthermore, parsing how to use these API's was a challenge in and of itself.  Each had a unique helper library and vast documentation to go through.  
 
-All and all, it was a lot of fun to build and I hope you enjoy it.  
+All and all, it was a lot of fun to build and I hope you enjoy it.
+
+## ScreenShots
+
+![](./resources/screenshot.png "Home Page")
