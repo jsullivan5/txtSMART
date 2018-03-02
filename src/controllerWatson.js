@@ -1,11 +1,10 @@
-/* eslint global-require: 0 */
 const config = require('./util/config');
 const logger = require('./util/logger');
 const helpers = require('./responseHelper.js');
+const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
 function getTone(req, res) {
   const requestBody = req.params.content;
-  const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
   const toneAnalyzer = new ToneAnalyzerV3({
     username: config.watsonUserName,
@@ -30,8 +29,6 @@ function getTone(req, res) {
 }
 
 function getToneServer(text, res) {
-  const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
-
   const toneAnalyzer = new ToneAnalyzerV3({
     username: config.watsonUserName,
     password: config.watsonPassword,
