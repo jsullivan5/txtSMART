@@ -1,4 +1,3 @@
-/* eslint global-require: 0 */
 const config = require('./util/config');
 const logger = require('./util/logger');
 const client = require('twilio')(config.twilioSID, config.twilioToken);
