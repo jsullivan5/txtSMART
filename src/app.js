@@ -6,6 +6,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('express-cors');
 const bodyParser = require('body-parser');
+const logger = require('./util/logger');
 
 const port = (process.env.PORT || 3000);
 const app = express();
@@ -34,7 +35,7 @@ if (process.env.NODE_ENV !== 'production') {
 // WebSockets for Incoming Text
 const server = http.createServer(app)
   .listen(port, () => {
-    console.log(`Listening on port ${port}.`);
+    logger.info(`Listening on port ${port}.`);
   });
 
 const io = require('socket.io')(server);
