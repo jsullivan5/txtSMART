@@ -1,5 +1,3 @@
-
-import ReactDOM from 'react-dom';
 import React from 'react';
 import { StaticRouter } from 'react-router';
 import { shallow, mount } from 'enzyme';
