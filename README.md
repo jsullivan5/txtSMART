@@ -1,5 +1,11 @@
 # txtSmart
 
+I am currently in the process of rebuilding this application.
+The rebuild can be seen at:
+
+[UI](https://github.com/jsullivan5/txtsmrt-ui)
+[API](https://github.com/jsullivan5/txtsmrt-api)
+
 ## Prerequisites
 
 ```
