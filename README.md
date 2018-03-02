@@ -65,3 +65,4 @@ All and all, it was a lot of fun to build and I hope you enjoy it.
 ## ScreenShots
 
 ![](./resources/screenshot.png "Home Page")
+![](./resources/message-console-screenshot.png "Message Page")
