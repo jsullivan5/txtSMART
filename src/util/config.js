@@ -1,4 +1,5 @@
 const config = {
+  port: process.env.PORT || 3000,
   watsonUrl: process.env.WATSON_URL || null,
   watsonUserName: process.env.WATSON_USERNAME || null,
   watsonPassword: process.env.WATSON_PASSWORD || null,
