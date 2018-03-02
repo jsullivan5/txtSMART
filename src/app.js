@@ -1,11 +1,14 @@
 /* eslint global-require: 0 */
 /* eslint import/no-extraneous-dependencies: 0 */
+require('dotenv').config();
+
 const path = require('path');
 const express = require('express');
 const cors = require('express-cors');
 const bodyParser = require('body-parser');
+const logger = require('./util/logger');
+const config = require('./util/config');
 
-const port = (process.env.PORT || 3000);
 const app = express();
 const router = require('./router');
 const http = require('http');
@@ -19,20 +22,20 @@ if (process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
-  const config = require('../webpack.config.js');
-  const compiler = webpack(config);
+  const webPackConfig = require('../webpack.config.js');
+  const compiler = webpack(webPackConfig);
 
   app.use(webpackHotMiddleware(compiler));
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
-    publicPath: config.output.publicPath,
+    publicPath: webPackConfig.output.publicPath,
   }));
 }
 
 // WebSockets for Incoming Text
 const server = http.createServer(app)
-  .listen(port, () => {
-    console.log(`Listening on port ${port}.`);
+  .listen(config.port, () => {
+    logger.info(`Listening on port ${config.port}.`);
   });
 
 const io = require('socket.io')(server);
@@ -48,8 +51,5 @@ app.get('/', (req, res) => { res.sendFile(path.join(__dirname, '/../index.html')
 
 app.use('/api', router);
 app.get('/*', (req, res) => { res.sendFile(path.join(__dirname, '/../index.html')); });
-
-
-console.log(`Listening at http://localhost:${port}`);
 
 module.exports = server;

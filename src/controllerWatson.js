@@ -1,14 +1,14 @@
-/* eslint global-require: 0 */
-const credentials = require('../credentials.js');
+const config = require('./util/config');
+const logger = require('./util/logger');
 const helpers = require('./responseHelper.js');
+const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
 function getTone(req, res) {
   const requestBody = req.params.content;
-  const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
   const toneAnalyzer = new ToneAnalyzerV3({
-    username: credentials.watsonCred.username,
-    password: credentials.watsonCred.password,
+    username: config.watsonUserName,
+    password: config.watsonPassword,
     version_date: '2017-07-01',
   });
 
@@ -19,21 +19,19 @@ function getTone(req, res) {
 
   toneAnalyzer.tone(params, (error, response) => {
     if (error) {
-      console.log('error:', error);
+      logger.error('error:', error);
       res.status(500).send(error);
     } else {
-      console.log(JSON.stringify(response, null, 2));
+      logger.debug(JSON.stringify(response, null, 2));
       res.status(200).send(response);
     }
   });
 }
 
 function getToneServer(text, res) {
-  const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
-
   const toneAnalyzer = new ToneAnalyzerV3({
-    username: credentials.watsonCred.username,
-    password: credentials.watsonCred.password,
+    username: config.watsonUserName,
+    password: config.watsonPassword,
     version_date: '2017-07-01',
   });
 
@@ -44,14 +42,10 @@ function getToneServer(text, res) {
 
   toneAnalyzer.tone(params, (error, response) => {
     if (error) {
-      console.log('error:', error);
+      logger.error('error:', error);
       res.status(500).send(error);
     } else {
-      // console.log(JSON.stringify(response, null, 2));
       const toneArray = response.document_tone.tone_categories[0].tones;
-
-      console.log(toneArray);
-
       const introText = helpers.getIntroText(toneArray);
       const tones = helpers.formatArray(toneArray);
 

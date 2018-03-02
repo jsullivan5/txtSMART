@@ -1,9 +1,12 @@
 {
     "extends": ["airbnb", "plugin:react/all"],
     "env": {
-      "browser": true
+      "browser": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
     },
-    "plugins": ["eslint-plugin-react"], 
+    "plugins": ["eslint-plugin-react"],
     "rules": {
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "react/jsx-no-literals": [0],

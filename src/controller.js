@@ -1,9 +1,9 @@
-/* eslint global-require: 0 */
-const credentials = require('../credentials.js');
+const config = require('./util/config');
+const logger = require('./util/logger');
+const client = require('twilio')(config.twilioSID, config.twilioToken);
 
 function sendSms(req, res) {
   const messageContent = req.params.content;
-  const client = require('twilio')(credentials.sidLive, credentials.liveToken);
 
   client.api.messages
     .create({
@@ -11,7 +11,7 @@ function sendSms(req, res) {
       to: '+12146210523',
       from: '+18178732313',
     }).then((data) => {
-      console.log('Administrator notified');
+      logger.info('Administrator notified');
 
       res.status(200).send({
         body: data.body,
@@ -21,12 +21,11 @@ function sendSms(req, res) {
         toneView: false,
       });
     }).catch((err) => {
-      console.error('Could not notify administrator', err);
+      logger.error('Could not notify administrator', err);
     });
 }
 
 function getHistory(req, res) {
-  const client = require('twilio')(credentials.sidLive, credentials.liveToken);
   client.messages.list().then((data) => {
     const messages = data.map((message, index, array) => ({
       id: array.length - index,

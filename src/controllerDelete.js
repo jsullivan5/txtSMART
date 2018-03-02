@@ -1,16 +1,17 @@
 const request = require('request');
-const credentials = require('../credentials.js');
+const config = require('./util/config');
+const logger = require('./util/logger');
 
 function deleteMessage(req, res) {
   const messageId = req.params.msgId;
-  const url = `https://${credentials.sidLive}:${credentials.liveToken}@api.twilio.com/2010-04-01/Accounts/${credentials.sidLive}/Messages/${messageId}`;
+  const url = `https://${config.twilioSID}:${config.twilioToken}@api.twilio.com/2010-04-01/Accounts/${config.twilioSID}/Messages/${messageId}`;
 
   request.delete({ uri: url }, (error, response) => {
     if (error) {
-      console.log('error:', error);
+      logger.error('error:', error);
       res.status(500).send(error);
     } else {
-      console.log(JSON.stringify(response, null, 2));
+      logger.debug(JSON.stringify(response, null, 2));
       res.status(200).send(response);
     }
   });

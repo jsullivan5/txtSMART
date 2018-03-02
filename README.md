@@ -1,5 +1,11 @@
 # txtSmart
 
+I am currently in the process of rebuilding this application.
+The rebuild can be seen at:
+
+[UI](https://github.com/jsullivan5/txtsmrt-ui)
+[API](https://github.com/jsullivan5/txtsmrt-api)
+
 ## Prerequisites
 
 ```
@@ -12,6 +18,10 @@ git
 ```
 Twilio and IBM Watson credentials
 ```
+For Development:
+```
+ngrok
+```
 
 ## Installation
 
@@ -19,35 +29,16 @@ Twilio and IBM Watson credentials
   2. run `npm install`
   3. Sign up for a free Twilio SMS number.
     [TwilioSignup](https://www.twilio.com)
-
   4. Sign up for IBM Bluemix for free and request to use the Watson API
     [Develop With Watson](https://www.ibm.com/watson/developer/)
-  5. Create a file in the root directory called credentials.js
+  5. configure .env file with credentials as seen in .sample.env
 
-      a. Have it follow this template:
-
-      //Watson credentials
-
-      var watsonCred = {
-        "url": "https://gateway.watsonplatform.net/tone-analyzer/api",
-        "username": "YOUR_USER_NAME",
-        "password": "YOUR_PASSWORD"
-      }
-
-      //Twilio Live Credentials
-
-      var sidLive = "YOUR_TWILIO_SID";
-
-      var liveToken = "YOUR_TWILIO_AUTH_TOKEN";
-
-
-      module.exports = {
-        watsonCred: watsonCred,
-        sidLive: sidLive,
-        liveToken: liveToken
-      }
-
-  6. Run `npm start`
+  6. To create http tunnel to use Twilio endpoint:
+  ```
+  ngrok http 3000
+  ```
+  Make sure to use generated `https` endpoint in Twilio console under SMS configuration
+  7. Run `npm start`
 
 ## Objective
 
@@ -74,3 +65,4 @@ All and all, it was a lot of fun to build and I hope you enjoy it.
 ## ScreenShots
 
 ![](./resources/screenshot.png "Home Page")
+![](./resources/message-console-screenshot.png "Message Page")
