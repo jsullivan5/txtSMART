@@ -11,7 +11,8 @@ const Home = () => (
     <h4>Fortunately, we have got your back.</h4>
     <p>Text us anytime at
       <span className="inline-number"> (817)-873-2313 </span>
-      to get your message content analyzed by Watson.</p>
+      to get your message content analyzed by Watson.
+    </p>
     <h4>You know, the machine that won Jeopardy..</h4>
     <p>To get started</p>
     <ul>
