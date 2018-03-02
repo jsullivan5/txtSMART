@@ -1,5 +1,6 @@
 /* eslint global-require: 0 */
 const config = require('./util/config');
+const logger = require('./util/logger');
 const helpers = require('./responseHelper.js');
 
 function getTone(req, res) {
@@ -19,10 +20,10 @@ function getTone(req, res) {
 
   toneAnalyzer.tone(params, (error, response) => {
     if (error) {
-      console.log('error:', error);
+      logger.error('error:', error);
       res.status(500).send(error);
     } else {
-      console.log(JSON.stringify(response, null, 2));
+      logger.debug(JSON.stringify(response, null, 2));
       res.status(200).send(response);
     }
   });
@@ -44,14 +45,10 @@ function getToneServer(text, res) {
 
   toneAnalyzer.tone(params, (error, response) => {
     if (error) {
-      console.log('error:', error);
+      logger.error('error:', error);
       res.status(500).send(error);
     } else {
-      // console.log(JSON.stringify(response, null, 2));
       const toneArray = response.document_tone.tone_categories[0].tones;
-
-      console.log(toneArray);
-
       const introText = helpers.getIntroText(toneArray);
       const tones = helpers.formatArray(toneArray);
 
