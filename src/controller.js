@@ -1,10 +1,10 @@
 /* eslint global-require: 0 */
 const config = require('./util/config');
 const logger = require('./util/logger');
+const client = require('twilio')(config.twilioSID, config.twilioToken);
 
 function sendSms(req, res) {
   const messageContent = req.params.content;
-  const client = require('twilio')(config.twilioSID, config.twilioToken);
 
   client.api.messages
     .create({
@@ -27,7 +27,6 @@ function sendSms(req, res) {
 }
 
 function getHistory(req, res) {
-  const client = require('twilio')(config.twilioSID, config.twilioToken);
   client.messages.list().then((data) => {
     const messages = data.map((message, index, array) => ({
       id: array.length - index,
